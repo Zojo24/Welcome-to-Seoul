@@ -1,3 +1,5 @@
+import TravelingTip from "./TravelingTip";
+
 export default function MainPage() {
   return (
     <div className="main-page">
