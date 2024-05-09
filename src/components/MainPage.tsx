@@ -1,3 +1,4 @@
+import MustVisit from "./MustVisit";
 import TravelingTip from "./TravelingTip";
 
 export default function MainPage() {
