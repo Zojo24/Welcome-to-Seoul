@@ -6,6 +6,23 @@ header {
   min-height: 40px;
   align-items: center;
 }
+.header .link {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.header .link:last-child {
+  margin-right: 0;
+}
+
+.header .link:hover {
+  background-color: #e9ecef;
+  color: #0056b3;
+}
 
 /* footer */
 footer {
