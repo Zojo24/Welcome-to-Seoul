@@ -1,3 +1,4 @@
+import MustTry from "./MustTry";
 import MustVisit from "./MustVisit";
 import TravelingTip from "./TravelingTip";
 
