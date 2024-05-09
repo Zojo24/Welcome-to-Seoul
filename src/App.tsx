@@ -2,7 +2,7 @@ import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 
-function App() {
+export default function App() {
   return (
     <>
       <Header />
@@ -10,5 +10,3 @@ function App() {
     </>
   );
 }
-
-export default App;
