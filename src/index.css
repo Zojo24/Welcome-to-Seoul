@@ -19,3 +19,26 @@ footer {
   justify-content: center;
   gap: 20px;
 }
+
+.main-page {
+  text-align: center;
+  padding: 50px;
+}
+
+.main-page h1 {
+  margin-bottom: 48px;
+}
+
+.button {
+  width: 120px;
+  height: 120px;
+  background-color: blanchedalmond;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
