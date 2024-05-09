@@ -1,17 +1,19 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainPage from "../pages/MainPage";
-import TravelingTip from "../pages/TravelingTip";
+import TravelingTips from "../pages/TravelingTips";
 import MustVisit from "../pages/MustVisit";
 import MustTry from "../pages/MustTry";
+import MyPlace from "../pages/MyPlace";
 
 export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/TravelingTip" element={<TravelingTip />} />
-        <Route path="/MustVisit" element={<MustVisit />} />
-        <Route path="/MustTry" element={<MustTry />} />
+        <Route path="/traveling-tips" element={<TravelingTips />} />
+        <Route path="/must-visit" element={<MustVisit />} />
+        <Route path="/must-try" element={<MustTry />} />
+        <Route path="/my-place" element={<MyPlace />} />
       </Routes>
     </BrowserRouter>
   );

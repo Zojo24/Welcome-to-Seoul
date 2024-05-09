@@ -1,6 +1,4 @@
-import MustTry from "./MustTry";
-import MustVisit from "./MustVisit";
-import TravelingTip from "./TravelingTip";
+import { Link } from "react-router-dom";
 
 export default function MainPage() {
   return (
@@ -10,16 +8,19 @@ export default function MainPage() {
         <br /> Welcome to Seoul!
       </h1>
       <div className="button">
-        <h3>Traveling Tip</h3>
-        <TravelingTip />
+        <h3>
+          <Link to="/traveling-tips">Traveling Tips</Link>
+        </h3>
       </div>
       <div className="button">
-        <h3>Must Visit!</h3>
-        <MustVisit />
+        <h3>
+          <Link to="/must-visit">Must Visit!</Link>
+        </h3>
       </div>
       <div className="button">
-        <h3>Must Try!</h3>
-        <MustTry />
+        <h3>
+          <Link to="/must-try">Must Try!</Link>
+        </h3>
       </div>
     </div>
   );
