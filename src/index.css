@@ -15,7 +15,7 @@ body {
   align-items: center;
   background-color: #fff;
   padding: 10px 40px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(207, 171, 250, 0.5);
   border-radius: 10px;
   z-index: 10;
 }
@@ -100,8 +100,8 @@ h2 {
 }
 
 .background1 {
-  border: 1px solid #272727;
-  filter: blur(3px);
+  border: 3px solid #cfabfa;
+  filter: blur(4px);
   border-radius: 54% 46% 68% 30% / 69% 39% 62% 32%;
   animation: shake 5s ease-in-out infinite;
 }
