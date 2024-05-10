@@ -1,6 +1,6 @@
 .form {
   font-size: 1.5rem;
-  margin-top: 15vh;
+  margin-top: 8rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,7 +44,7 @@ form input {
   margin-bottom: 10px;
 }
 .form select {
-  border: 1px solid #d8b7ff;
+  border: 1px solid #cea6fc;
   height: 40px;
   padding: 0px 20px;
   font-size: 16px;
@@ -63,9 +63,10 @@ form input {
 .btn-submit {
   width: 10rem;
   height: fit-content;
-  background-color: #fee26f;
+  background-color: #c99bfd;
   box-shadow: 0 4px 6px rgba(207, 171, 250, 0.5);
   font-family: "Jersey 10", sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
+  color: #fff;
 }

@@ -4,6 +4,7 @@ import TravelingTips from "../pages/TravelingTips";
 import MustVisit from "../pages/MustVisit";
 import MustTry from "../pages/MustTry";
 import MyPlace from "../pages/MyPlace";
+import PostForm from "../pages/PostForm";
 
 export default function Router() {
   return (
@@ -13,6 +14,7 @@ export default function Router() {
       <Route path="/must-visit" element={<MustVisit />} />
       <Route path="/must-try" element={<MustTry />} />
       <Route path="/my-place" element={<MyPlace />} />
+      <Route path="/blog-post" element={<PostForm />} />
     </Routes>
   );
 }

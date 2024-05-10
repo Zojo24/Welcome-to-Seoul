@@ -1,5 +1,13 @@
-import PostForm from "../components/PostForm";
+import { useNavigate } from "react-router-dom";
 
 export default function TravelingTips() {
-  return <PostForm />;
+  const navigate = useNavigate();
+  const onClick = () => {
+    navigate("/blog-post");
+  };
+  return (
+    <>
+      <button onClick={onClick}>Write Blog</button>
+    </>
+  );
 }
