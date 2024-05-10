@@ -1,3 +1,9 @@
+import PostForm from "./PostForm";
+
 export default function MustVisit() {
-  return <></>;
+  return (
+    <>
+      <PostForm />
+    </>
+  );
 }

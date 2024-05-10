@@ -26,18 +26,28 @@ export default function PastForm() {
           <label htmlFor="address">Address</label>
           <input type="text" className="address" />
         </div>
-        <div>
-          <label htmlFor="category">Category</label>
-          <select name="category" id="category">
-            <option className="options" value="">
-              Select!
-            </option>
-            {categories?.map((category) => (
-              <option className="options" value={category} key={category}>
-                {category}
+        <div className="category-and-rating">
+          <div className="input-group">
+            <label htmlFor="category">Category</label>
+            <select name="category" id="category">
+              <option className="options" value="">
+                Select!
               </option>
-            ))}
-          </select>
+              {categories?.map((category) => (
+                <option className="options" value={category} key={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="input-group">
+            <label htmlFor="rating"> Rating</label>
+            <input type="text" className="rating" />
+          </div>
+        </div>
+        <div>
+          <label htmlFor="comment">Comment</label>
+          <input type="text" className="comment" />
         </div>
         <div>
           <label htmlFor="content">Recommendation</label>
