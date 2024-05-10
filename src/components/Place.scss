@@ -1,0 +1,61 @@
+// Place component
+.container {
+  display: flex;
+  width: auto;
+  max-height: 15rem;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1.1px solid #000000;
+}
+
+.image-wrapper img {
+  width: 15rem;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info {
+  padding: 10px 20px;
+}
+.name-and-rating {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.name {
+  font-size: 1.5em;
+  color: #333;
+}
+.rating {
+  border-radius: 10px;
+  font-weight: bold;
+}
+.address {
+  font-size: 1em;
+  color: #666;
+}
+.recommendation {
+  margin: 0.6em 0;
+  background-color: #fff4b4;
+  font-weight: 400;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.save {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+.save-btn {
+  background-color: #c99bfd;
+  font-family: "Jersey 10", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
