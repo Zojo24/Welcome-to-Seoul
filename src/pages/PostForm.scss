@@ -5,11 +5,9 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   h1 {
     color: #c99bfd;
-    margin: 2rem;
   }
 }
 .form__box {
@@ -19,7 +17,7 @@
   width: 60%;
   padding: 40px;
   padding-right: 50px;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 form input {
   height: 20px;
