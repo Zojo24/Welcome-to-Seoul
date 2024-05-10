@@ -1,11 +1,12 @@
 .form {
+  background-color: #fff;
+  border-radius: 10px;
   font-size: 1.5rem;
-  margin-top: 8rem;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  width: 100%;
   h1 {
     color: #c99bfd;
     margin: 2rem;

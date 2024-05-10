@@ -1,13 +1,12 @@
 .page_container {
+  background-color: #fff;
+  border-radius: 10px;
   font-size: 1.5rem;
-  margin-top: 8rem;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  h1 {
-    margin: 2rem;
-  }
 }
 .blog-btn {
   width: 10rem;
