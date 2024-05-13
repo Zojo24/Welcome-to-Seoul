@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 export default function Header() {
   return (
     <header className="header">
-      <Link to="/" className="Logo">
-        Welcome to Seoul!
+      <Link to="/" className="logo">
+        <img src="./logo.jpeg" alt="logo" />
+        <p>Welcome to Seoul!</p>
       </Link>
       <Link to="/traveling-tips" className="link">
         Traveling Tips
