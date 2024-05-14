@@ -8,7 +8,7 @@ $dark-gray: #383838;
 $shadow-color: rgba(207, 171, 250, 0.5);
 
 .page_container {
-  background-color: #fff;
+  background-color: $white;
   border-radius: 10px;
   font-size: 1.5rem;
   min-height: 100vh;
@@ -19,8 +19,8 @@ $shadow-color: rgba(207, 171, 250, 0.5);
 .blog-btn {
   width: 10rem;
   height: fit-content;
-  background-color: #fee26f;
-  border: 1px solid #000000;
+  background-color: $yellow;
+  border: 1px solid $black;
   border-radius: 10px;
   font-family: "Jersey 10", sans-serif;
   font-size: 1.5rem;

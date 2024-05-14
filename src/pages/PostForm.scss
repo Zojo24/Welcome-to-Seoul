@@ -1,5 +1,7 @@
+@import "../styles/common";
+
 .form {
-  background-color: #fff;
+  background-color: $white;
   border-radius: 10px;
   font-size: 1.5rem;
   min-height: 100vh;
@@ -25,8 +27,8 @@ form input {
   padding-left: 10px;
   font-size: 16px;
   border-radius: 0.3rem;
-  border: 1px solid #d8b7ff;
-  box-shadow: 0 4px 6px rgba(207, 171, 250, 0.5);
+  border: 1px solid $purple;
+  box-shadow: 0 4px 6px $shadow-color;
   width: 100%;
 }
 .form textarea {
@@ -36,8 +38,8 @@ form input {
   padding-left: 10px;
   font-size: 16px;
   border-radius: 0.3rem;
-  border: 1px solid #d8b7ff;
-  box-shadow: 0 4px 6px rgba(207, 171, 250, 0.5);
+  border: 1px solid $purple;
+  box-shadow: 0 4px 6px $shadow-color;
   width: 100%;
 }
 .form label {
@@ -52,7 +54,7 @@ form input {
   padding: 0px 20px;
   font-size: 16px;
   border-radius: 0.3rem;
-  box-shadow: 0 4px 6px rgba(207, 171, 250, 0.5);
+  box-shadow: 0 4px 6px $shadow-color;
 }
 .category-and-rating {
   display: flex;
@@ -70,7 +72,7 @@ form input {
 }
 
 #category .options {
-  background-color: #fee26f;
+  background-color: $yellow;
   font-family: "Jersey 10", sans-serif;
 }
 .form_block {
@@ -82,10 +84,10 @@ form input {
   width: 10rem;
   height: fit-content;
   background-color: #c99bfd;
-  box-shadow: 0 4px 6px rgba(207, 171, 250, 0.5);
+  box-shadow: 0 4px 6px $shadow-color;
   font-family: "Jersey 10", sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #fff;
+  color: $white;
   cursor: pointer;
 }
