@@ -8,11 +8,26 @@ body {
 }
 
 // 헤더
+.blur-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background-color: #f2eaf8;
+  display: none;
+  z-index: 9;
+
+  &.visible {
+    display: block; // 스크롤 시 보이도록 설정
+  }
+}
 .header {
   position: sticky;
-  top: 3%;
-  left: 3%;
-  right: 3%;
+  top: 30px;
+  left: 10px;
+  right: 10px;
+
   display: flex;
   justify-content: center;
   align-items: center;

@@ -4,7 +4,7 @@ export default function Place() {
   return (
     <div className="container">
       <div className="image-wrapper">
-        <img src="/public/1.jpeg" alt="Watermelon slices on a plate" />
+        <img src="/1.jpeg" alt="Watermelon slices on a plate" />
       </div>
       <div className="info">
         <div className="name-and-rating">
