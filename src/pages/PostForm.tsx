@@ -1,22 +1,45 @@
+import { useState } from "react";
 import "./PostForm.scss";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "firebase";
 
-export default function PastForm() {
+export default function PostForm() {
   type CategoryType = "Traveling Tips" | "Must Visit" | "Must Try";
+
   const categories: CategoryType[] = [
     "Traveling Tips",
     "Must Visit",
     "Must Try",
   ];
+
+  const [content, setContent] = useState<string>("");
+
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    try {
+      await addDoc(collection(db, "post"), {
+        content: content,
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {}
   };
+
+  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const {
+      target: { name, value },
+    } = e;
+    if (name === "content") {
+      setContent(value);
+    }
+  };
+
   return (
     <form onSubmit={onSubmit} className="form">
       <h1>Create Blog Post</h1>
       <div className="form__box">
         <div>
           <label htmlFor="name">Place (Eng)</label>
-          <input type="text" className="name-eng" />
+          <input type="text" className="name-eng" onChange={onChange} />
         </div>
         <div>
           <label htmlFor="name">Place (Kor)</label>
