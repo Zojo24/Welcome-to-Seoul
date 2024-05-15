@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./PostForm.scss";
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "firebaseApp";
+import { db } from "../firebaseApp";
 import { toast } from "react-toastify";
 
 export default function PostForm() {
@@ -45,9 +45,9 @@ export default function PostForm() {
       setComment("");
       setRecommendation("");
       toast.success("Successfully uploaded the posting");
-    } catch (e: any) {
+    } catch (e) {
       console.log(e);
-      toast.error(e?.code);
+      toast.error("error");
     }
   };
 
