@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "./PostForm.scss";
-import { collection, addDoc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebaseApp";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function PostForm() {
   type CategoryType = "Select!" | "Traveling Tips" | "Must Visit" | "Must Try";
@@ -24,7 +25,7 @@ export default function PostForm() {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await addDoc(collection(db, "post"), {
+      await addDoc(collection(db, "posts"), {
         placeEng,
         placeKor,
         address,
@@ -38,13 +39,6 @@ export default function PostForm() {
           second: "2-digit",
         }),
       });
-      setPlaceEng("");
-      setPlaceKor("");
-      setAddress("");
-      setCategory("Traveling Tips");
-      setRating("");
-      setComment("");
-      setRecommendation("");
       toast.success("Successfully uploaded the posting");
     } catch (e) {
       console.log(e);
@@ -60,11 +54,30 @@ export default function PostForm() {
     const {
       target: { name, value },
     } = e;
-    if (name === "placeEng") {
-      setCategory(value as CategoryType);
-    }
-    if (name === "category") {
-      setCategory(value as CategoryType);
+    switch (name) {
+      case "placeEng":
+        setPlaceEng(value);
+        break;
+      case "placeKor":
+        setPlaceKor(value);
+        break;
+      case "address":
+        setAddress(value);
+        break;
+      case "category":
+        setCategory(value as CategoryType);
+        break;
+      case "rating":
+        setRating(value);
+        break;
+      case "comment":
+        setComment(value);
+        break;
+      case "recommendation":
+        setRecommendation(value);
+        break;
+      default:
+        break;
     }
   };
 
@@ -129,6 +142,7 @@ export default function PostForm() {
               name="rating"
               value={rating}
               className="rating"
+              onChange={onChange}
             />
           </div>
         </div>
@@ -140,6 +154,7 @@ export default function PostForm() {
             name="comment"
             value={comment}
             className="comment"
+            onChange={onChange}
           />
         </div>
         <div>
@@ -149,6 +164,7 @@ export default function PostForm() {
             name="recommendation"
             value={recommendation}
             className="content"
+            onChange={onChange}
           />
         </div>
         <div className="form_block">
