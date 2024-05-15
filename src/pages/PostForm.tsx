@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "./PostForm.scss";
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "firebase";
+import { db } from "firebaseApp";
+import { toast } from "react-toastify";
 
 export default function PostForm() {
   type CategoryType = "Traveling Tips" | "Must Visit" | "Must Try";
@@ -11,25 +12,58 @@ export default function PostForm() {
     "Must Visit",
     "Must Try",
   ];
+  const [placeEng, setPlaceEng] = useState<string>("");
+  const [placeKor, setPlaceKor] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
+  const [category, setCategory] = useState<CategoryType>("Traveling Tips");
+  const [rating, setRating] = useState<string>("");
+  const [comment, setComment] = useState<string>("");
+  const [recommendation, setRecommendation] = useState<string>("");
 
-  const [content, setContent] = useState<string>("");
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       await addDoc(collection(db, "post"), {
-        content: content,
+        placeEng,
+        placeKor,
+        address,
+        category,
+        rating,
+        recommendation,
+        comment,
+        createdAt: new Date()?.toLocaleDateString("ko", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        }),
       });
-      console.log("Document written with ID: ", docRef.id);
-    } catch (e) {}
+      setPlaceEng("");
+      setPlaceKor("");
+      setAddress("");
+      setCategory("Traveling Tips");
+      setRating("");
+      setComment("");
+      setRecommendation("");
+      toast.success("Successfully uploaded the posting");
+    } catch (e: any) {
+      console.log(e);
+      toast.error(e?.code);
+    }
   };
 
-  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const onChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
     const {
       target: { name, value },
     } = e;
-    if (name === "content") {
-      setContent(value);
+    if (name === "placeEng") {
+      setCategory(value as CategoryType);
+    }
+    if (name === "category") {
+      setCategory(value as CategoryType);
     }
   };
 
@@ -38,21 +72,47 @@ export default function PostForm() {
       <h1>Create Blog Post</h1>
       <div className="form__box">
         <div>
-          <label htmlFor="name">Place (Eng)</label>
-          <input type="text" className="name-eng" onChange={onChange} />
+          <label htmlFor="placeEng">Place (Eng)</label>
+          <input
+            type="text"
+            id="placeEng"
+            name="placeEng"
+            value={placeEng}
+            className="name-eng"
+            onChange={onChange}
+          />
         </div>
         <div>
-          <label htmlFor="name">Place (Kor)</label>
-          <input type="text" className="name-ko" />
+          <label htmlFor="placeKor">Place (Kor)</label>
+          <input
+            type="text"
+            id="placeKor"
+            name="placeKor"
+            value={placeKor}
+            className="name-ko"
+            onChange={onChange}
+          />
         </div>
         <div>
           <label htmlFor="address">Address</label>
-          <input type="text" className="address" />
+          <input
+            type="text"
+            id="address"
+            name="address"
+            value={address}
+            className="address"
+            onChange={onChange}
+          />
         </div>
         <div className="category-and-rating">
           <div className="input-group">
             <label htmlFor="category">Category</label>
-            <select name="category" id="category">
+            <select
+              name="category"
+              id="category"
+              onChange={onChange}
+              defaultValue={category}
+            >
               <option className="options" value="">
                 Select!
               </option>
@@ -65,16 +125,33 @@ export default function PostForm() {
           </div>
           <div className="input-group">
             <label htmlFor="rating"> Rating</label>
-            <input type="text" className="rating" />
+            <input
+              type="text"
+              id="rating"
+              name="rating"
+              value={rating}
+              className="rating"
+            />
           </div>
         </div>
         <div>
           <label htmlFor="comment">Comment</label>
-          <input type="text" className="comment" />
+          <input
+            type="text"
+            id="comment"
+            name="comment"
+            value={comment}
+            className="comment"
+          />
         </div>
         <div>
-          <label htmlFor="content">Recommendation</label>
-          <textarea className="content" />
+          <label htmlFor="recommendation">Recommendation</label>
+          <textarea
+            id="recommendation"
+            name="recommendation"
+            value={recommendation}
+            className="content"
+          />
         </div>
         <div className="form_block">
           <input type="submit" className="btn-submit" value="Submit" />
