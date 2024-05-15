@@ -5,9 +5,10 @@ import { db } from "../firebaseApp";
 import { toast } from "react-toastify";
 
 export default function PostForm() {
-  type CategoryType = "Traveling Tips" | "Must Visit" | "Must Try";
+  type CategoryType = "Select!" | "Traveling Tips" | "Must Visit" | "Must Try";
 
   const categories: CategoryType[] = [
+    "Select!",
     "Traveling Tips",
     "Must Visit",
     "Must Try",
@@ -15,7 +16,7 @@ export default function PostForm() {
   const [placeEng, setPlaceEng] = useState<string>("");
   const [placeKor, setPlaceKor] = useState<string>("");
   const [address, setAddress] = useState<string>("");
-  const [category, setCategory] = useState<CategoryType>("Traveling Tips");
+  const [category, setCategory] = useState<CategoryType>("Select!");
   const [rating, setRating] = useState<string>("");
   const [comment, setComment] = useState<string>("");
   const [recommendation, setRecommendation] = useState<string>("");
@@ -113,9 +114,6 @@ export default function PostForm() {
               onChange={onChange}
               defaultValue={category}
             >
-              <option className="options" value="">
-                Select!
-              </option>
               {categories?.map((category) => (
                 <option className="options" value={category} key={category}>
                   {category}
