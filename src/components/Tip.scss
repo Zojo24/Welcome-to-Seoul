@@ -1,0 +1,31 @@
+@import "../styles/common";
+
+.tip_container {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 15rem;
+  border-radius: 20px;
+  padding: 3rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1.1px solid $black;
+  cursor: pointer;
+
+  .tip_title {
+    font-size: 1.5em;
+    color: #333;
+  }
+
+  .tip_topic {
+    width: 100%;
+    margin: 0.6em 0;
+    background-color: $yellow;
+    font-size: 1.4rem;
+    font-weight: 400;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+  }
+}

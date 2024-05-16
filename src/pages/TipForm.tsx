@@ -7,12 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 export default function TipForm() {
-  type CategoryType = "Traveling Tips";
-
-  const categories: CategoryType[] = ["Traveling Tips"];
-
   const [title, setTitle] = useState<string>("");
-  const [category, setCategory] = useState<CategoryType>("Traveling Tips");
   const [topic, setTopic] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const navigate = useNavigate();
@@ -20,9 +15,8 @@ export default function TipForm() {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await addDoc(collection(db, "posts"), {
+      await addDoc(collection(db, "Tips"), {
         title,
-        category,
         topic,
         content,
         createdAt: new Date()?.toLocaleDateString("ko", {
@@ -51,9 +45,6 @@ export default function TipForm() {
       case "title":
         setTitle(value);
         break;
-      case "category":
-        setCategory(value as CategoryType);
-        break;
       case "topic":
         setTopic(value);
         break;
@@ -78,22 +69,6 @@ export default function TipForm() {
             value={title}
             onChange={onChange}
           />
-        </div>
-
-        <div className="category">
-          <label htmlFor="category">Category</label>
-          <select
-            name="category"
-            id="category"
-            onChange={onChange}
-            defaultValue={category}
-          >
-            {categories?.map((category) => (
-              <option className="options" value={category} key={category}>
-                {category}
-              </option>
-            ))}
-          </select>
         </div>
         <div>
           <label htmlFor="topic">topic</label>
