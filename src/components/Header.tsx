@@ -20,7 +20,7 @@ export default function Header() {
       <div className={`blur-top ${blur ? "visible" : ""}`}></div>
       <header className="header">
         <Link to="/" className="logo">
-          <img src="./logo.jpeg" alt="logo" />
+          <img src="/logo.jpeg" alt="logo" />
           <p>Welcome to Seoul!</p>
         </Link>
         <Link to="/traveling-tips" className="link">

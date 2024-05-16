@@ -2,6 +2,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../firebaseApp";
+import "./PlaceDetail.scss";
 
 type PlaceProps = {
   id: string;
@@ -44,19 +45,21 @@ export default function PlaceDetail() {
   if (!post) return <div>Loading...</div>;
 
   return (
-    <div className="container">
-      <div className="image-wrapper">
+    <div className="detail">
+      <div className="detail_img">
         <img src="/1.jpeg" alt="Watermelon slices on a plate" />
       </div>
-      <div className="info">
+      <div className="detail_info">
         <div className="name-and-rating">
           <div className="name">{post.placeEng}</div>
           <span className="rating">⭐ {post.rating}</span>
         </div>
         <div className="name">{post.placeKor}</div>
-        <p className="address">Address: {post.address}</p>
-        <p className="recommendation">{post.comment}</p>
-        <p className="recommendation">{post.recommendation}</p>
+        <p className="address">{post.address}</p>
+        <div className="recommendation-box">
+          Recommendation:
+          <p className="recommendation">{post.recommendation}</p>
+        </div>
         <div className="save">
           <button className="save-btn">Bookmark!</button>
           <button className="edit-btn">Edit</button>

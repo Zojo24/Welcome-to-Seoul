@@ -1,6 +1,7 @@
 @import "../styles/common";
 
 .container {
+  margin: 2rem 0;
   display: flex;
   width: auto;
   max-height: 15rem;
@@ -8,6 +9,7 @@
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: 1.1px solid $black;
+  cursor: pointer;
 }
 
 .image-wrapper img {
@@ -18,6 +20,7 @@
 
 .info {
   padding: 10px 20px;
+  width: 100%;
 }
 .name-and-rating {
   display: flex;
@@ -51,6 +54,7 @@
   align-items: center;
 }
 .save-btn {
+  width: 8rem;
   background-color: #c99bfd;
   color: $white;
   font-family: "Jersey 10", sans-serif;

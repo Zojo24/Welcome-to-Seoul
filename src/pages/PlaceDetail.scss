@@ -1,0 +1,66 @@
+@import "../styles/common";
+
+.detail {
+  height: 70vh;
+  background-color: $white;
+  margin: 5rem;
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1.1px solid $black;
+
+  .detail_img {
+    border-radius: 20px;
+    width: 100%;
+    max-width: 50rem;
+    align-self: center;
+    img {
+      width: 100%;
+      max-height: 20rem;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+  }
+
+  .detail_info {
+    margin-top: 3rem;
+    .name {
+      font-size: 3rem;
+    }
+    .rating {
+      font-size: 2.2rem;
+    }
+    .address {
+      font-size: 1.7rem;
+    }
+    .recommendation-box {
+      margin-top: 5rem;
+      margin-bottom: 5rem;
+      font-size: 1.7rem;
+      background-color: $yellow;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .recommendation {
+      font-size: 2rem;
+      background-color: $white;
+    }
+    .edit-btn {
+      width: 8rem;
+      background-color: #c99bfd;
+      color: $white;
+      font-family: "Jersey 10", sans-serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      border: none;
+      padding: 10px;
+      border-radius: 10px;
+      margin-left: 1rem;
+      cursor: pointer;
+    }
+  }
+}
