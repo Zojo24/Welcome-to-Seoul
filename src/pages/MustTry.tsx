@@ -9,6 +9,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebaseApp";
 import Place from "../components/Place";
+import Balloon from "../components/Balloon";
 
 type PostProps = {
   id: string;
@@ -24,7 +25,7 @@ type PostProps = {
 export default function MustTry() {
   const [posts, setPosts] = useState<PostProps[]>([]);
   const navigate = useNavigate();
-  const onClick = () => {
+  const handleClick = () => {
     navigate("/blog-post");
   };
 
@@ -55,14 +56,7 @@ export default function MustTry() {
         ))}
       </div>
       <div className="btn-box">
-        <span>
-          If you want to share your favorite places, <br />
-          please click the button below!
-        </span>
-        <button className="blog-btn_purple" onClick={onClick}>
-          <span className="blog-btn_name">Write a post</span>
-          <span className="material-symbols-outlined">stylus</span>
-        </button>
+        <Balloon onClick={handleClick} />
       </div>
     </div>
   );

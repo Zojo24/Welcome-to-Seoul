@@ -43,7 +43,7 @@ $shadow-color: rgba(207, 171, 250, 0.5);
       box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.2);
       &:hover,
       &:focus {
-        transform: rotate(-10deg);
+        transform: rotate(-2deg);
         transition: all 0.3s ease;
       }
       .blog-btn_name {

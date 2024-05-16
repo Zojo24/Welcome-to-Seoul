@@ -4,6 +4,7 @@ import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { db } from "../firebaseApp";
 import { useEffect, useState } from "react";
 import Tip from "../components/Tip";
+import Balloon from "../components/Balloon";
 
 type TipProps = {
   id: string;
@@ -15,7 +16,7 @@ type TipProps = {
 export default function TravelingTips() {
   const [posts, setPosts] = useState<TipProps[]>([]);
   const navigate = useNavigate();
-  const onClick = () => {
+  const handleClick = () => {
     navigate("/blog-tip");
   };
 
@@ -41,14 +42,10 @@ export default function TravelingTips() {
         ))}
       </div>
       <div className="btn-box">
-        <span>
-          Want to share your Seoul travel tips?, <br />
-          please click the button below!
-        </span>
-        <button className="blog-btn_yellow" onClick={onClick}>
-          <span className="blog-btn_name">Write your tip</span>
-          <span className="material-symbols-outlined">stylus</span>
-        </button>
+        <Balloon
+          topic={posts.length > 0 ? posts[0].topic : undefined}
+          onClick={handleClick}
+        />
       </div>
     </div>
   );
