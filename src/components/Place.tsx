@@ -35,9 +35,6 @@ export default function Place({
         </div>
         <p className="address">Address: {address}</p>
         <p className="recommendation">{comment}</p>
-        <div className="save">
-          <button className="save-btn">Save</button>
-        </div>
       </div>
     </div>
   );

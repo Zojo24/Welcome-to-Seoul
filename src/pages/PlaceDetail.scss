@@ -1,9 +1,12 @@
 @import "../styles/common";
-
+.box-detail {
+  display: flex;
+  justify-content: center;
+}
 .detail {
+  width: 45rem;
   height: 70vh;
   background-color: $white;
-  margin: 5rem;
   padding: 5rem;
   display: flex;
   flex-direction: column;

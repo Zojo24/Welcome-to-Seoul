@@ -45,24 +45,26 @@ export default function PlaceDetail() {
   if (!post) return <div>Loading...</div>;
 
   return (
-    <div className="detail">
-      <div className="detail_img">
-        <img src="/1.jpeg" alt="Watermelon slices on a plate" />
-      </div>
-      <div className="detail_info">
-        <div className="name-and-rating">
-          <div className="name">{post.placeEng}</div>
-          <span className="rating">⭐ {post.rating}</span>
+    <div className="box-detail">
+      <div className="detail">
+        <div className="detail_img">
+          <img src="/1.jpeg" alt="Watermelon slices on a plate" />
         </div>
-        <div className="name">{post.placeKor}</div>
-        <p className="address">{post.address}</p>
-        <div className="recommendation-box">
-          Recommendation:
-          <p className="recommendation">{post.recommendation}</p>
-        </div>
-        <div className="save">
-          <button className="save-btn">Bookmark!</button>
-          <button className="edit-btn">Edit</button>
+        <div className="detail_info">
+          <div className="name-and-rating">
+            <div className="name">{post.placeEng}</div>
+            <span className="rating">⭐ {post.rating}</span>
+          </div>
+          <div className="name">{post.placeKor}</div>
+          <p className="address">{post.address}</p>
+          <div className="recommendation-box">
+            Recommendation:
+            <p className="recommendation">{post.recommendation}</p>
+          </div>
+          <div className="save">
+            <button className="save-btn">Bookmark!</button>
+            <button className="edit-btn">Edit</button>
+          </div>
         </div>
       </div>
     </div>
