@@ -13,6 +13,7 @@ export default function TipForm() {
 
   const [title, setTitle] = useState<string>("");
   const [category, setCategory] = useState<CategoryType>("Traveling Tips");
+  const [topic, setTopic] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const navigate = useNavigate();
 
@@ -22,6 +23,7 @@ export default function TipForm() {
       await addDoc(collection(db, "posts"), {
         title,
         category,
+        topic,
         content,
         createdAt: new Date()?.toLocaleDateString("ko", {
           hour: "2-digit",
@@ -51,6 +53,9 @@ export default function TipForm() {
         break;
       case "category":
         setCategory(value as CategoryType);
+        break;
+      case "topic":
+        setTopic(value);
         break;
       case "content":
         setContent(value);
@@ -89,6 +94,16 @@ export default function TipForm() {
               </option>
             ))}
           </select>
+        </div>
+        <div>
+          <label htmlFor="topic">topic</label>
+          <input
+            type="text"
+            id="topic"
+            name="topic"
+            value={topic}
+            onChange={onChange}
+          />
         </div>
         <div>
           <label htmlFor="content">content</label>
