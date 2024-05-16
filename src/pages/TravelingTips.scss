@@ -1,1 +1,29 @@
 @import "../styles/common";
+
+.page_container {
+  .blog-btn_yellow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10rem;
+    height: 3rem;
+    background-color: $yellow;
+    border: 1px solid $black;
+    border-radius: 10px;
+    font-family: "Jersey 10", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1rem;
+    cursor: pointer;
+    transform: rotate(0deg);
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.2);
+    &:hover,
+    &:focus {
+      transform: rotate(-10deg);
+      transition: all 0.3s ease;
+    }
+    .blog-btn_name {
+      margin-right: 6px;
+    }
+  }
+}

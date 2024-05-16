@@ -7,14 +7,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 export default function PostForm() {
-  type CategoryType = "Select!" | "Traveling Tips" | "Must Visit" | "Must Try";
+  type CategoryType = "Select!" | "Must Visit" | "Must Try";
 
-  const categories: CategoryType[] = [
-    "Select!",
-    "Traveling Tips",
-    "Must Visit",
-    "Must Try",
-  ];
+  const categories: CategoryType[] = ["Select!", "Must Visit", "Must Try"];
 
   const [placeEng, setPlaceEng] = useState<string>("");
   const [placeKor, setPlaceKor] = useState<string>("");

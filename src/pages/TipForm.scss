@@ -1,0 +1,89 @@
+@import "../styles/common";
+
+@mixin font {
+  font-family: sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.form_yellow {
+  background-color: $white;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1 {
+    color: #ffcc00;
+  }
+
+  .form__box {
+    background-color: #f8e7a4;
+    box-shadow: 0 4px 6px rgb(255, 183, 0, 0.5);
+    border-radius: 10px;
+    width: 60%;
+    padding: 40px;
+    padding-right: 50px;
+    margin-bottom: 4rem;
+
+    label {
+      display: block;
+      font-weight: 500;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    input {
+      height: 20px;
+      padding: 10px 0;
+      padding-left: 10px;
+      font-size: 16px;
+      @include font;
+      border-radius: 0.3rem;
+      border: 1px solid #ffcc00;
+      box-shadow: 0 4px 6px rgb(255, 183, 0, 0.5);
+      width: 100%;
+    }
+
+    select {
+      border: 1px solid #ffcc00;
+      height: 40px;
+      padding: 0px 20px;
+      font-size: 16px;
+      border-radius: 0.3rem;
+      box-shadow: 0 4px 6px rgb(255, 183, 0, 0.5);
+    }
+
+    textarea {
+      min-height: 300px;
+      line-height: 1.5;
+      padding: 10px 0;
+      padding-left: 10px;
+      font-size: 16px;
+      border-radius: 0.3rem;
+      border: 1px solid #ffcc00;
+      box-shadow: 0 4px 6px rgb(255, 183, 0, 0.5);
+      width: 100%;
+      @include font;
+    }
+    .form_block {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1rem;
+
+      .btn-submit {
+        width: 10rem;
+        height: fit-content;
+        border: 1px solid #ffcc00;
+        background-color: #ffcc00;
+        box-shadow: 0 4px 6px rgb(255, 183, 0, 0.5);
+        font-family: "Jersey 10", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: $white;
+        cursor: pointer;
+      }
+    }
+  }
+}
