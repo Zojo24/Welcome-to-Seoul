@@ -18,7 +18,7 @@ type PostProps = {
   address: string;
   comment: string;
   rating: string;
-  category?: "Select!" | "Traveling Tips" | "Must Visit" | "Must Try";
+  category?: "Select!" | "Must Visit" | "Must Try";
   recommendation?: string;
 };
 
