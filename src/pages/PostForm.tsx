@@ -96,7 +96,6 @@ export default function PostForm() {
             id="placeEng"
             name="placeEng"
             value={placeEng}
-            className="name-eng"
             onChange={onChange}
           />
         </div>
@@ -107,7 +106,6 @@ export default function PostForm() {
             id="placeKor"
             name="placeKor"
             value={placeKor}
-            className="name-ko"
             onChange={onChange}
           />
         </div>
@@ -118,7 +116,6 @@ export default function PostForm() {
             id="address"
             name="address"
             value={address}
-            className="address"
             onChange={onChange}
           />
         </div>
