@@ -1,6 +1,22 @@
 import "./Place.scss";
 
-export default function Place() {
+type PlaceProps = {
+  id: string;
+  placeEng: string;
+  placeKor?: string;
+  address: string;
+  comment: string;
+  rating: string;
+  category?: "Select!" | "Traveling Tips" | "Must Visit" | "Must Try";
+  recommendation?: string;
+};
+
+export default function Place({
+  placeEng,
+  address,
+  comment,
+  rating,
+}: PlaceProps) {
   return (
     <div className="container">
       <div className="image-wrapper">
@@ -8,11 +24,11 @@ export default function Place() {
       </div>
       <div className="info">
         <div className="name-and-rating">
-          <div className="name">Samcheongdong Sujebi</div>
-          <span className="rating">⭐ 4.5</span>
+          <div className="name">{placeEng}</div>
+          <span className="rating">⭐ {rating}</span>
         </div>
-        <p className="address">Address: 101-1 Samcheong-ro, Jongno-gu, Seoul</p>
-        <p className="recommendation">It has the best Sujebi!</p>
+        <p className="address">Address: {address}</p>
+        <p className="recommendation">{comment}</p>
         <div className="save">
           <button className="save-btn">Save</button>
         </div>

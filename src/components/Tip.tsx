@@ -1,4 +1,4 @@
-export default function Post() {
+export default function Tip() {
   return (
     <></>
     // <div className="container">
