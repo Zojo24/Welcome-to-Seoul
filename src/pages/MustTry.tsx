@@ -55,12 +55,13 @@ export default function MustTry() {
         ))}
       </div>
       <div className="btn-box">
-        <p>
+        <span>
           If you want to share your favorite places, <br />
           please click the button below!
-        </p>
+        </span>
         <button className="blog-btn" onClick={onClick}>
-          Write Blog
+          <span className="blog-btn_name">Write a post</span>
+          <span className="material-symbols-outlined">stylus</span>
         </button>
       </div>
     </div>

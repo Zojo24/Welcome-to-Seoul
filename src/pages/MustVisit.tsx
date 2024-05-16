@@ -48,13 +48,20 @@ export default function MustVisit() {
     <div className="page_container">
       <h1>Must Visit!</h1>
       <h2>When you are in Seoul, you must visit...</h2>
-      <button className="blog-btn" onClick={onClick}>
-        Write Blog
-      </button>
       <div className="places_list">
         {posts.map((post) => (
           <Place key={post.id} {...post} />
         ))}
+      </div>
+      <div className="btn-box">
+        <span>
+          If you want to share your favorite places, <br />
+          please click the button below!
+        </span>
+        <button className="blog-btn" onClick={onClick}>
+          <span className="blog-btn_name">Write a post</span>
+          <span className="material-symbols-outlined">stylus</span>
+        </button>
       </div>
     </div>
   );
