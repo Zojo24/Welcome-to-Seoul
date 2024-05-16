@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import "./Place.scss";
 
 type PlaceProps = {
@@ -12,13 +13,18 @@ type PlaceProps = {
 };
 
 export default function Place({
+  id,
   placeEng,
   address,
   comment,
   rating,
 }: PlaceProps) {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/place-detail/${id}`);
+  };
   return (
-    <div className="container">
+    <div className="container" onClick={handleClick}>
       <div className="image-wrapper">
         <img src="/1.jpeg" alt="Watermelon slices on a plate" />
       </div>

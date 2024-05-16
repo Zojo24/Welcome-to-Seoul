@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import "./MustTry.scss";
 import { useEffect, useState } from "react";
 import {
   collection,

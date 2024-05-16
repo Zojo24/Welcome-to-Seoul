@@ -5,6 +5,7 @@ import MustVisit from "../pages/MustVisit";
 import MustTry from "../pages/MustTry";
 import MyPlace from "../pages/MyPlace";
 import PostForm from "../pages/PostForm";
+import PlaceDetail from "../pages/PlaceDetail";
 
 export default function Router() {
   return (
@@ -15,6 +16,7 @@ export default function Router() {
       <Route path="/must-try" element={<MustTry />} />
       <Route path="/my-place" element={<MyPlace />} />
       <Route path="/blog-post" element={<PostForm />} />
+      <Route path="/place-detail/:id" element={<PlaceDetail />} />
     </Routes>
   );
 }
