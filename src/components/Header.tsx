@@ -6,7 +6,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setBlur(window.scrollY > 40);
+      setBlur(window.scrollY > 30);
     };
 
     window.addEventListener("scroll", handleScroll);

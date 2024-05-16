@@ -49,13 +49,19 @@ export default function MustTry() {
     <div className="page_container">
       <h1>Must Try!</h1>
       <h2>When you are in Seoul, you must try...</h2>
-      <button className="blog-btn" onClick={onClick}>
-        Write Blog
-      </button>
       <div className="places_list">
         {posts.map((post) => (
           <Place key={post.id} {...post} />
         ))}
+      </div>
+      <div className="btn-box">
+        <p>
+          If you want to share your favorite places, <br />
+          please click the button below!
+        </p>
+        <button className="blog-btn" onClick={onClick}>
+          Write Blog
+        </button>
       </div>
     </div>
   );

@@ -15,16 +15,31 @@ $shadow-color: rgba(207, 171, 250, 0.5);
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.blog-btn {
-  width: 10rem;
-  height: fit-content;
-  background-color: $yellow;
-  border: 1px solid $black;
-  border-radius: 10px;
-  font-family: "Jersey 10", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin: 1rem;
-  cursor: pointer;
+  .btn-box {
+    margin-top: 5rem;
+    margin-left: auto;
+    margin-right: 5rem;
+    display: flex-end;
+    text-align: right;
+    align-items: center;
+    .blog-btn {
+      width: 10rem;
+      height: 3rem;
+      background-color: $yellow;
+      border: 1px solid $black;
+      border-radius: 10px;
+      font-family: "Jersey 10", sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 1rem;
+      cursor: pointer;
+      transform: rotate(0deg);
+      box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.2);
+      &:hover,
+      &:focus {
+        transform: rotate(-10deg);
+        transition: all 0.3s ease;
+      }
+    }
+  }
 }
