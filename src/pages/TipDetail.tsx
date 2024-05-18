@@ -36,11 +36,13 @@ export default function TipDetail() {
 
   if (!post) return <div>Loading...</div>;
   return (
-    <div className="tip_detail">
-      <span className="tip_title">{post.title}</span>
-      <p className="tip_topic">Topic : {post.topic}</p>
+    <div className="box-tip">
+      <div className="tip_detail">
+        <span className="tip_title">{post.title}</span>
+        <p className="tip_topic">Topic : {post.topic}</p>
 
-      <p className="tip_content">{post.content}</p>
+        <p className="tip_content">{post.content}</p>
+      </div>
     </div>
   );
 }

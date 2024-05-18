@@ -1,15 +1,24 @@
 @import "../styles/common";
 
 @mixin text-box {
+  font-family: sans-serif;
   background-color: $white;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
   text-align: left;
   padding: 10px;
 }
+
+.box-tip {
+  display: flex;
+  justify-content: center;
+}
+
 .tip_detail {
-  height: 70vh;
+  width: 45rem;
+  height: 80vh;
   background-color: $yellow;
-  margin: 5rem;
   padding: 5rem;
   display: flex;
   flex-direction: column;
