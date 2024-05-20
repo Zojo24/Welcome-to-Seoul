@@ -18,32 +18,38 @@ type PlaceProps = {
 export default function PlaceDetail() {
   const { id } = useParams<{ id: string }>();
   const [post, setPost] = useState<PlaceProps | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPost = async () => {
-      const docRef = doc(db, "posts", id!);
-      const docSnap = await getDoc(docRef);
+      try {
+        const docRef = doc(db, "posts", id!);
+        const docSnap = await getDoc(docRef);
 
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        setPost({
-          id: docSnap.id,
-          placeEng: data.placeEng,
-          placeKor: data.placeKor,
-          address: data.address,
-          comment: data.comment,
-          rating: data.rating,
-          category: data.category,
-          recommendation: data.recommendation,
-        } as PlaceProps);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          setPost({
+            id: docSnap.id,
+            placeEng: data.placeEng,
+            placeKor: data.placeKor,
+            address: data.address,
+            comment: data.comment,
+            rating: data.rating,
+            category: data.category,
+            recommendation: data.recommendation,
+          } as PlaceProps);
+        } else {
+          setError("Document does not exist");
+        }
+      } catch (e) {
+        setError("Failed to fetch document: " + (e as Error).message);
       }
     };
-
     fetchPost();
   }, [id]);
 
   if (!post) return <div>Loading...</div>;
-
+  if (error) return <div>{error}</div>;
   return (
     <div className="box-detail">
       <div className="detail">
