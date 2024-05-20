@@ -5,7 +5,7 @@
 }
 .detail {
   width: 45rem;
-  height: 70vh;
+  height: 100vh;
   background-color: $white;
   padding: 5rem;
   display: flex;
@@ -32,13 +32,13 @@
   .detail_info {
     margin-top: 3rem;
     .name {
-      font-size: 2.6rem;
+      font-size: 2.3rem;
     }
     .rating {
       font-size: 2.2rem;
     }
     .address {
-      font-size: 1.6rem;
+      font-size: 1.4rem;
     }
     .recommendation-box {
       margin-top: 5rem;
@@ -52,7 +52,8 @@
       font-size: 1.5rem;
       background-color: $white;
     }
-    .edit-btn {
+    .edit-btn,
+    .save-btn {
       width: 8rem;
       background-color: #c99bfd;
       color: $white;
@@ -64,6 +65,11 @@
       border-radius: 10px;
       margin-left: 1rem;
       cursor: pointer;
+    }
+    .save {
+      display: flex;
+      justify-content: right;
+      align-items: center;
     }
   }
 }
