@@ -10,10 +10,10 @@ const Balloon = ({ topic, onClick }: BalloonProps) => {
     <>
       {topic ? (
         <div className="tip_balloon">
-          <p>
+          <span>
             Want to share your Seoul travel tips? <br />
             Please click the button below!
-          </p>
+          </span>
           <button className="tip-button" onClick={onClick}>
             <span className="blog-btn_name">Write your tip</span>
             <span className="material-symbols-outlined">stylus</span>
