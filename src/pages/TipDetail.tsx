@@ -14,27 +14,35 @@ type TipProps = {
 export default function TipDetail() {
   const { id } = useParams<{ id: string }>();
   const [post, setPost] = useState<TipProps | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPost = async () => {
-      const docRef = doc(db, "Tips", id!);
-      const docSnap = await getDoc(docRef);
+      try {
+        const docRef = doc(db, "Tips", id!);
+        const docSnap = await getDoc(docRef);
 
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        setPost({
-          id: docSnap.id,
-          title: data.title,
-          topic: data.topic,
-          content: data.content,
-        } as TipProps);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          setPost({
+            id: docSnap.id,
+            title: data.title,
+            topic: data.topic,
+            content: data.content,
+          } as TipProps);
+        } else {
+          setError("Document does not exist");
+        }
+      } catch (e) {
+        setError("Failed to fetch document: " + (e as Error).message);
       }
     };
-
     fetchPost();
   }, [id]);
 
   if (!post) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+
   return (
     <div className="box-tip">
       <div className="tip_detail">
