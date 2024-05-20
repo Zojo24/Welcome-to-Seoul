@@ -1,0 +1,65 @@
+@import "../styles/common";
+.login {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  .login_box {
+    width: 30rem;
+    min-height: fit-content;
+    background-color: $white;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(207, 171, 250, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+
+    h1 {
+      text-align: center;
+      font-size: 2.7rem;
+      color: #c99bfd;
+    }
+    .form_block {
+      display: flex;
+      flex-direction: column;
+      margin-top: 1rem;
+      label {
+        margin: 0 0.6rem 1rem 0.2rem;
+        color: $dark-gray;
+        font-size: 1.5rem;
+      }
+      input {
+        height: 2rem;
+        border: 0.8px solid $purple;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(207, 171, 250, 0.2);
+      }
+    }
+    .create_block {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      font-size: 1.3rem;
+      color: $dark-gray;
+      margin: 1.5rem 0.6rem 1.5rem 0.2rem;
+      a {
+        text-decoration: none;
+        color: #6c6c6c;
+      }
+    }
+    .login-btn {
+      height: 2rem;
+      background-color: $purple;
+      border: 0.8px solid $purple;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(207, 171, 250, 0.2);
+
+      font-family: "Jersey 10", sans-serif;
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin: 0 0 1.5rem;
+    }
+  }
+}

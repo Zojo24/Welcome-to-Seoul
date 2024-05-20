@@ -8,6 +8,7 @@ import PostForm from "../pages/PostForm";
 import PlaceDetail from "../pages/PlaceDetail";
 import TipForm from "../pages/TipForm";
 import TipDetail from "../pages/TipDetail";
+import LoginPage from "../pages/LoginPage";
 
 export default function Router() {
   return (
@@ -21,6 +22,7 @@ export default function Router() {
       <Route path="/place-detail/:id" element={<PlaceDetail />} />
       <Route path="/blog-tip" element={<TipForm />} />
       <Route path="/tip-detail/:id" element={<TipDetail />} />
+      <Route path="/login" element={<LoginPage />} />
     </Routes>
   );
 }
