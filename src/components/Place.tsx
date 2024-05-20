@@ -31,7 +31,7 @@ export default function Place({
       <div className="info">
         <div className="name-and-rating">
           <div className="name">{placeEng}</div>
-          <span className="rating">⭐ {rating}</span>
+          <div className="rating">⭐ {rating}</div>
         </div>
         <p className="address">Address: {address}</p>
         <p className="recommendation">{comment}</p>

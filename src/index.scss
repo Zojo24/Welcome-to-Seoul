@@ -22,6 +22,7 @@ body {
     display: block; // 스크롤 시 보이도록 설정
   }
 }
+
 .header {
   position: sticky;
   top: 3%;
@@ -78,6 +79,48 @@ body {
       font-weight: 600;
     }
   }
+  @media (max-width: 850px) {
+    padding: 10px 20px;
+    .logo {
+      height: 1rem;
+      img {
+        height: 1.8rem;
+      }
+      p {
+        font-size: 25px;
+        text-align: center;
+        padding: 0 8px;
+      }
+    }
+    .link {
+      font-size: 21px;
+      margin: 0;
+      padding: 6px;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 650px) {
+    padding: 10px;
+    .logo {
+      height: 1rem;
+      img {
+        height: 1.5rem;
+        margin-right: 5px;
+      }
+      p {
+        font-size: 20px;
+        text-align: center;
+        padding: 4px;
+      }
+    }
+    .link {
+      font-size: 20px;
+      margin: 0;
+      padding: 6px;
+      text-align: center;
+    }
+  }
 }
 
 // 푸터
@@ -121,15 +164,14 @@ footer {
     position: relative;
     z-index: 3;
 
-    &.h1 {
+    &h1 {
       font-size: 4rem;
     }
 
-    &.h2 {
+    &h2 {
       font-size: 3rem;
     }
   }
-
   .background1,
   .background2 {
     top: 50%;
