@@ -19,6 +19,18 @@ export default function Router({ authenticated }: RouterProps) {
     <Routes>
       {authenticated ? (
         <>
+          <Route path="/my-place" element={<MyPlace />} />
+          <Route path="/blog-post" element={<PostForm />} />
+          <Route path="/blog-tip" element={<TipForm />} />
+          <Route path="/" element={<MainPage />} />
+          <Route path="/traveling-tips" element={<TravelingTips />} />
+          <Route path="/must-visit" element={<MustVisit />} />
+          <Route path="/must-try" element={<MustTry />} />{" "}
+          <Route path="/place-detail/:id" element={<PlaceDetail />} />
+          <Route path="/tip-detail/:id" element={<TipDetail />} />
+        </>
+      ) : (
+        <>
           <Route path="/" element={<MainPage />} />
           <Route path="/traveling-tips" element={<TravelingTips />} />
           <Route path="/must-visit" element={<MustVisit />} />
@@ -27,12 +39,6 @@ export default function Router({ authenticated }: RouterProps) {
           <Route path="/tip-detail/:id" element={<TipDetail />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
-        </>
-      ) : (
-        <>
-          <Route path="/my-place" element={<MyPlace />} />
-          <Route path="/blog-post" element={<PostForm />} />
-          <Route path="/blog-tip" element={<TipForm />} />
         </>
       )}
     </Routes>

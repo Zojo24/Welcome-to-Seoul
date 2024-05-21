@@ -35,6 +35,7 @@
         border: 0.8px solid $purple;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(207, 171, 250, 0.2);
+        padding-left: 10px;
       }
     }
     .create_block {
@@ -61,5 +62,9 @@
       cursor: pointer;
       margin: 0 0 1.5rem;
     }
+  }
+  .form_error {
+    color: red;
+    font-size: 1.3rem;
   }
 }
