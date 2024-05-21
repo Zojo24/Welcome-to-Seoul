@@ -87,16 +87,36 @@ body {
         height: 1.8rem;
       }
       p {
-        font-size: 25px;
+        font-size: 23px;
         text-align: center;
-        padding: 0 8px;
       }
     }
     .link {
-      font-size: 21px;
+      font-size: 22px;
       margin: 0;
       padding: 6px;
       text-align: center;
+      padding-left: 22px;
+    }
+  }
+  @media (max-width: 775px) {
+    padding: 10px 20px;
+    .logo {
+      height: 1rem;
+      img {
+        height: 1.5rem;
+      }
+      p {
+        font-size: 21px;
+        text-align: center;
+      }
+    }
+    .link {
+      font-size: 20px;
+      margin: 0;
+      padding: 4px;
+      text-align: center;
+      padding-left: 20px;
     }
   }
 
@@ -109,16 +129,17 @@ body {
         margin-right: 5px;
       }
       p {
-        font-size: 20px;
+        font-size: 19px;
         text-align: center;
         padding: 4px;
       }
     }
     .link {
-      font-size: 20px;
+      font-size: 18px;
       margin: 0;
       padding: 6px;
       text-align: center;
+      padding-left: 15px;
     }
   }
 }
