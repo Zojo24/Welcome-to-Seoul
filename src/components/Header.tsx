@@ -1,8 +1,14 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import AuthContext from "context/AuthContext";
+import { getAuth, signOut } from "firebase/auth";
+import { app } from "firebaseApp";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Header() {
   const [blur, setBlur] = useState(false);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,13 +21,19 @@ export default function Header() {
     };
   }, []);
 
+  const handleLoginLogout = async () => {
+    const auth = getAuth(app);
+    await signOut(auth);
+    toast.success("You are logged out!");
+    navigate("/");
+  };
   return (
     <>
       <div className={`blur-top ${blur ? "visible" : ""}`}></div>
       <header className="header">
         <Link to="/" className="logo">
           <img src="/logo.jpeg" alt="logo" />
-          <p>Welcome to Seoul!</p>
+          <p>Welcome to Seoul !</p>
         </Link>
         <Link to="/must-visit" className="link">
           Must Visit
@@ -32,9 +44,16 @@ export default function Header() {
         <Link to="/traveling-tips" className="link">
           Traveling Tips
         </Link>
-        <Link to="/my-place" className="link">
-          My Place
-        </Link>
+        {user ? (
+          <button onClick={handleLoginLogout}>
+            <span className="material-symbols-outlined">person</span>
+            Logout
+          </button>
+        ) : (
+          <Link to="/login" className="btn">
+            Login
+          </Link>
+        )}
       </header>
     </>
   );

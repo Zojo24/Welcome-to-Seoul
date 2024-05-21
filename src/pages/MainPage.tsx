@@ -4,8 +4,8 @@ export default function MainPage() {
   return (
     <div className="main-page">
       <div className="title-container">
-        <h2>서울에 오신 것을 환영합니다!</h2>
-        <h1>Welcome to Seoul!</h1>
+        <h2>서울에 오신 것을 환영합니다</h2>
+        <h1>Welcome to Seoul !</h1>
         <div className="background1"></div>
         <div className="background2"></div>
       </div>
