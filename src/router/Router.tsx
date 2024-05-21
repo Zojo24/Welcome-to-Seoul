@@ -10,7 +10,7 @@ import TipForm from "../components/posts/TipForm";
 import TipDetail from "../pages/TipDetail";
 import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage";
-import EditForm from "components/posts/EditForm";
+import PostEdit from "components/posts/PostEdit";
 
 interface RouterProps {
   authenticated: boolean;
@@ -28,7 +28,7 @@ export default function Router({ authenticated }: RouterProps) {
           <Route path="/must-visit" element={<MustVisit />} />
           <Route path="/must-try" element={<MustTry />} />{" "}
           <Route path="/place-detail/:id" element={<PlaceDetail />} />
-          <Route path="/place-detail/edit/:id" element={<EditForm />} />
+          <Route path="/place-detail/edit/:id" element={<PostEdit />} />
           <Route path="/tip-detail/:id" element={<TipDetail />} />
         </>
       ) : (

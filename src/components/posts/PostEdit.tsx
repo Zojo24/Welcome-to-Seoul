@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { PostProps } from "../../pages/MustTry";
 
-export default function EditForm() {
+export default function PostEdit() {
   type CategoryType = "Select!" | "Must Visit" | "Must Try";
 
   const categories: CategoryType[] = ["Select!", "Must Visit", "Must Try"];

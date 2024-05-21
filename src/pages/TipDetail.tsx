@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { db } from "../firebaseApp";
 import "./TipDetail.scss";
 
-type TipProps = {
+export type TipProps = {
   id: string;
   title: string;
   topic: string;
