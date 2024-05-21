@@ -1,15 +1,28 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./PostForm.scss";
-import { addDoc, collection } from "firebase/firestore";
-import { db } from "../firebaseApp";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { db } from "../../firebaseApp";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { PostProps } from "../../pages/MustTry";
 
-export default function PostForm() {
+export default function EditForm() {
   type CategoryType = "Select!" | "Must Visit" | "Must Try";
 
   const categories: CategoryType[] = ["Select!", "Must Visit", "Must Try"];
+  const params = useParams();
+  const [post, setPost] = useState<PostProps | null>(null);
+  const [content, setContent] = useState<string>("");
+
+  const getPost = useCallback(async () => {
+    if (params.id) {
+      const docRef = doc(db, "posts", params.id);
+      const docSnap = await getDoc(docRef);
+      setPost({ ...(docSnap?.data() as PostProps), id: docSnap.id });
+      setContent(docSnap?.data()?.content);
+    }
+  }, [params.id]);
 
   const [placeEng, setPlaceEng] = useState<string>("");
   const [placeKor, setPlaceKor] = useState<string>("");
@@ -23,24 +36,14 @@ export default function PostForm() {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await addDoc(collection(db, "posts"), {
-        placeEng,
-        placeKor,
-        address,
-        category,
-        rating,
-        recommendation,
-        comment,
-        createdAt: new Date()?.toLocaleDateString("ko", {
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-        }),
-      });
-      toast.success("Successfully uploaded the posting");
-      navigate("/");
-    } catch (e) {
-      console.log(e);
+      if (post) {
+        const postRef = doc(db, "posts", post?.id);
+        await updateDoc(postRef, { content: content });
+      }
+      toast.success("Successfully updated the posting");
+      navigate(`post/${post?.id}`);
+    } catch (error) {
+      console.log(error);
       toast.error("error");
     }
   };
@@ -79,6 +82,10 @@ export default function PostForm() {
         break;
     }
   };
+
+  useEffect(() => {
+    if (params.id) getPost();
+  }, [getPost, params.id]);
 
   return (
     <form onSubmit={onSubmit} className="form">

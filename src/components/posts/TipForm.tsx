@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./TipForm.scss";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../firebaseApp";
+import { db } from "../../firebaseApp";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";

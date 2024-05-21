@@ -11,7 +11,7 @@ import { db } from "../firebaseApp";
 import Place from "../components/Place";
 import Balloon from "../components/Balloon";
 
-type PostProps = {
+export type PostProps = {
   id: string;
   placeEng: string;
   placeKor?: string;
