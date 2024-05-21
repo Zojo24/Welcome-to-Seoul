@@ -17,9 +17,9 @@ export default function SignUpPage() {
     try {
       const auth = getAuth(app);
       await createUserWithEmailAndPassword(auth, email, password);
-      navigate("/");
       toast.success("You are logged in!");
-    } catch (error: unknown) {
+      navigate("/");
+    } catch (error) {
       toast.error("Sorry, something has gone wrong.");
     }
   };
