@@ -1,34 +1,49 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./TipForm.scss";
-import { addDoc, collection } from "firebase/firestore";
-import { db } from "../firebaseApp";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { db } from "../../firebaseApp";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { TipProps } from "pages/TipDetail";
 
 export default function TipForm() {
   const [title, setTitle] = useState<string>("");
   const [topic, setTopic] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const navigate = useNavigate();
+  const params = useParams();
+  const [post, setPost] = useState<TipProps | null>(null);
+
+  const getPost = useCallback(async () => {
+    if (params.id) {
+      const docRef = doc(db, "Tips", params.id);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data() as TipProps;
+        setPost({ ...data, id: docSnap.id });
+        setTitle(data.title);
+        setTopic(data.topic);
+        setContent(data.content as string);
+      }
+    }
+  }, [params.id]);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await addDoc(collection(db, "Tips"), {
-        title,
-        topic,
-        content,
-        createdAt: new Date()?.toLocaleDateString("ko", {
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-        }),
-      });
-      toast.success("Successfully uploaded the posting");
-      navigate("/");
-    } catch (e) {
-      console.log(e);
+      if (post) {
+        const postRef = doc(db, "Tips", post?.id);
+        await updateDoc(postRef, {
+          title,
+          topic,
+          content,
+        });
+        toast.success("Successfully updated the posting");
+        navigate(`/tip-detail/${post?.id}`);
+      }
+    } catch (error) {
       toast.error("error");
     }
   };
@@ -56,9 +71,13 @@ export default function TipForm() {
     }
   };
 
+  useEffect(() => {
+    getPost();
+  }, [getPost]);
+
   return (
     <form onSubmit={onSubmit} className="form_yellow">
-      <h1>Create Blog Post</h1>
+      <h1>Update Blog Post</h1>
       <div className="form__box">
         <div>
           <label htmlFor="title">title</label>

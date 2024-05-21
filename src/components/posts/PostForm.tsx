@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./PostForm.scss";
-import { addDoc, collection } from "firebase/firestore";
-import { db } from "../firebaseApp";
+import { addDoc, collection, doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebaseApp";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { PostProps } from "pages/MustTry";
 
 export default function PostForm() {
   type CategoryType = "Select!" | "Must Visit" | "Must Try";
 
   const categories: CategoryType[] = ["Select!", "Must Visit", "Must Try"];
+
+  const params = useParams();
 
   const [placeEng, setPlaceEng] = useState<string>("");
   const [placeKor, setPlaceKor] = useState<string>("");
@@ -20,10 +23,33 @@ export default function PostForm() {
   const [recommendation, setRecommendation] = useState<string>("");
   const navigate = useNavigate();
 
+  const getPost = useCallback(async () => {
+    if (params.id) {
+      const docRef = doc(db, "posts", params.id);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data() as PostProps;
+
+        setPlaceEng(data.placeEng);
+        setPlaceKor(data.placeKor || "");
+        setAddress(data.address);
+        setCategory(data.category as CategoryType);
+        setRating(data.rating);
+        setComment(data.comment);
+        setRecommendation(data.recommendation || "");
+      }
+    }
+  }, [params.id]);
+
+  useEffect(() => {
+    getPost();
+  }, [getPost]);
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await addDoc(collection(db, "posts"), {
+      const docRef = await addDoc(collection(db, "posts"), {
         placeEng,
         placeKor,
         address,
@@ -38,9 +64,8 @@ export default function PostForm() {
         }),
       });
       toast.success("Successfully uploaded the posting");
-      navigate("/");
-    } catch (e) {
-      console.log(e);
+      navigate(`/place-detail/${docRef.id}`);
+    } catch (error) {
       toast.error("error");
     }
   };

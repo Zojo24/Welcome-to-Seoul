@@ -1,8 +1,9 @@
 import { doc, getDoc } from "firebase/firestore";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { db } from "../firebaseApp";
 import "./PlaceDetail.scss";
+import AuthContext from "context/AuthContext";
 
 type PlaceProps = {
   id: string;
@@ -19,6 +20,7 @@ export default function PlaceDetail() {
   const { id } = useParams<{ id: string }>();
   const [post, setPost] = useState<PlaceProps | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -67,10 +69,14 @@ export default function PlaceDetail() {
             Recommendation:
             <p className="recommendation">{post.recommendation}</p>
           </div>
-          <div className="save">
-            <button className="save-btn">Bookmark!</button>
-            <button className="edit-btn">Edit</button>
-          </div>
+          {user && (
+            <div className="save">
+              <button className="save-btn">Bookmark!</button>
+              <Link to={`/place-detail/edit/${post?.id}`}>
+                <button className="edit-btn">Edit </button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

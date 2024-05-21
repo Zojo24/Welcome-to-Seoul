@@ -1,10 +1,11 @@
 import { doc, getDoc } from "firebase/firestore";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { db } from "../firebaseApp";
 import "./TipDetail.scss";
+import AuthContext from "context/AuthContext";
 
-type TipProps = {
+export type TipProps = {
   id: string;
   title: string;
   topic: string;
@@ -15,7 +16,7 @@ export default function TipDetail() {
   const { id } = useParams<{ id: string }>();
   const [post, setPost] = useState<TipProps | null>(null);
   const [error, setError] = useState<string | null>(null);
-
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -50,6 +51,13 @@ export default function TipDetail() {
         <p className="tip_topic">Topic : {post.topic}</p>
 
         <p className="tip_content">{post.content}</p>
+        {user && (
+          <div className="save">
+            <Link to={`/tip-detail/edit/${post?.id}`}>
+              <button className="edit-btn">Edit </button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
