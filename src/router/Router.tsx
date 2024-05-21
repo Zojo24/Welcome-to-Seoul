@@ -9,6 +9,7 @@ import PlaceDetail from "../pages/PlaceDetail";
 import TipForm from "../pages/TipForm";
 import TipDetail from "../pages/TipDetail";
 import LoginPage from "../pages/LoginPage";
+import SignUpPage from "../pages/SignUpPage";
 
 export default function Router() {
   return (
@@ -23,6 +24,7 @@ export default function Router() {
       <Route path="/blog-tip" element={<TipForm />} />
       <Route path="/tip-detail/:id" element={<TipDetail />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/sign-up" element={<SignUpPage />} />
     </Routes>
   );
 }
