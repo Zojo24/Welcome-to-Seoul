@@ -40,4 +40,30 @@
     font-size: 1.5rem;
     @include text-box;
   }
+  .save {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    .edit-btn,
+    .save-btn {
+      width: 8rem;
+      background-color: #c99bfd;
+      border: none;
+      padding: 10px;
+      border-radius: 10px;
+      margin-left: 1rem;
+      cursor: pointer;
+      color: $white;
+      font-family: "Jersey 10", sans-serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      a {
+        color: $white;
+        font-family: "Jersey 10", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 400;
+        text-decoration: none;
+      }
+    }
+  }
 }

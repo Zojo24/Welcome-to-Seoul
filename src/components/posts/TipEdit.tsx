@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import "./TipForm.scss";
-import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebaseApp";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -77,7 +77,7 @@ export default function TipForm() {
 
   return (
     <form onSubmit={onSubmit} className="form_yellow">
-      <h1>Create Blog Post</h1>
+      <h1>Update Blog Post</h1>
       <div className="form__box">
         <div>
           <label htmlFor="title">title</label>

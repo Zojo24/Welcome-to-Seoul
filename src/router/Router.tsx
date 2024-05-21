@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import MainPage from "../pages/MainPage";
 import TravelingTips from "../pages/TravelingTips";
 import MustVisit from "../pages/MustVisit";
@@ -11,6 +11,7 @@ import TipDetail from "../pages/TipDetail";
 import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage";
 import PostEdit from "components/posts/PostEdit";
+import TipEdit from "components/posts/TipEdit";
 
 interface RouterProps {
   authenticated: boolean;
@@ -26,10 +27,12 @@ export default function Router({ authenticated }: RouterProps) {
           <Route path="/" element={<MainPage />} />
           <Route path="/traveling-tips" element={<TravelingTips />} />
           <Route path="/must-visit" element={<MustVisit />} />
-          <Route path="/must-try" element={<MustTry />} />{" "}
+          <Route path="/must-try" element={<MustTry />} />
           <Route path="/place-detail/:id" element={<PlaceDetail />} />
           <Route path="/place-detail/edit/:id" element={<PostEdit />} />
           <Route path="/tip-detail/:id" element={<TipDetail />} />
+          <Route path="/tip-detail/edit/:id" element={<TipEdit />} />
+          <Route path="*" element={<Navigate replace to="/" />} />
         </>
       ) : (
         <>
@@ -41,6 +44,7 @@ export default function Router({ authenticated }: RouterProps) {
           <Route path="/tip-detail/:id" element={<TipDetail />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="*" element={<Navigate replace to="/" />} />
         </>
       )}
     </Routes>
