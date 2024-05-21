@@ -33,7 +33,7 @@ export default function EditForm() {
         setPlaceEng(data.placeEng);
         setPlaceKor(data.placeKor || "");
         setAddress(data.address);
-        setCategory(data.category || "Select!");
+        setCategory(data.category as CategoryType);
         setRating(data.rating);
         setComment(data.comment);
         setRecommendation(data.recommendation || "");
@@ -56,7 +56,7 @@ export default function EditForm() {
           recommendation,
         });
         toast.success("Successfully updated the posting");
-        navigate(`post/${post?.id}`);
+        navigate(`/place-detail/${post?.id}`);
       }
     } catch (error) {
       console.log(error);
@@ -100,8 +100,8 @@ export default function EditForm() {
   };
 
   useEffect(() => {
-    if (params.id) getPost();
-  }, [getPost, params.id]);
+    getPost();
+  }, [getPost]);
 
   return (
     <form onSubmit={onSubmit} className="form">
@@ -144,7 +144,7 @@ export default function EditForm() {
               name="category"
               id="category"
               onChange={onChange}
-              defaultValue={category}
+              value={category}
             >
               {categories?.map((category) => (
                 <option className="options" value={category} key={category}>

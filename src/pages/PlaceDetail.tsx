@@ -72,9 +72,9 @@ export default function PlaceDetail() {
           {user && (
             <div className="save">
               <button className="save-btn">Bookmark!</button>
-              <button className="edit-btn">
-                <Link to={`/place-detail/edit/${post?.id}`}>Edit</Link>
-              </button>
+              <Link to={`/place-detail/edit/${post?.id}`}>
+                <button className="edit-btn">Edit </button>
+              </Link>
             </div>
           )}
         </div>
