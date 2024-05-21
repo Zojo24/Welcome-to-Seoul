@@ -82,9 +82,9 @@ export default function LoginPage() {
 
         <div className="create_block">
           Don't have an account?
-          <Link to="/sign-up">Sign up</Link>
+          <Link to="/sign-up">Sign Up</Link>
         </div>
-        <button className="login-btn">Log in</button>
+        <button className="login-btn">Log In</button>
       </div>
     </form>
   );

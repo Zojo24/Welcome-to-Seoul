@@ -106,10 +106,10 @@ export default function SignUpPage() {
 
         <div className="create_block">
           Already have an account?
-          <Link to="/login">Log in</Link>
+          <Link to="/login">Log In</Link>
         </div>
         <button className="login-btn" disabled={error?.length > 0}>
-          Sign up
+          Sign Up
         </button>
       </div>
     </form>
