@@ -13,17 +13,6 @@ export default function EditForm() {
   const categories: CategoryType[] = ["Select!", "Must Visit", "Must Try"];
   const params = useParams();
   const [post, setPost] = useState<PostProps | null>(null);
-  const [content, setContent] = useState<string>("");
-
-  const getPost = useCallback(async () => {
-    if (params.id) {
-      const docRef = doc(db, "posts", params.id);
-      const docSnap = await getDoc(docRef);
-      setPost({ ...(docSnap?.data() as PostProps), id: docSnap.id });
-      setContent(docSnap?.data()?.content);
-    }
-  }, [params.id]);
-
   const [placeEng, setPlaceEng] = useState<string>("");
   const [placeKor, setPlaceKor] = useState<string>("");
   const [address, setAddress] = useState<string>("");
@@ -33,15 +22,42 @@ export default function EditForm() {
   const [recommendation, setRecommendation] = useState<string>("");
   const navigate = useNavigate();
 
+  const getPost = useCallback(async () => {
+    if (params.id) {
+      const docRef = doc(db, "posts", params.id);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data() as PostProps;
+        setPost({ ...data, id: docSnap.id });
+        setPlaceEng(data.placeEng);
+        setPlaceKor(data.placeKor || "");
+        setAddress(data.address);
+        setCategory(data.category || "Select!");
+        setRating(data.rating);
+        setComment(data.comment);
+        setRecommendation(data.recommendation || "");
+      }
+    }
+  }, [params.id]);
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       if (post) {
         const postRef = doc(db, "posts", post?.id);
-        await updateDoc(postRef, { content: content });
+        await updateDoc(postRef, {
+          placeEng,
+          placeKor,
+          address,
+          category,
+          rating,
+          comment,
+          recommendation,
+        });
+        toast.success("Successfully updated the posting");
+        navigate(`post/${post?.id}`);
       }
-      toast.success("Successfully updated the posting");
-      navigate(`post/${post?.id}`);
     } catch (error) {
       console.log(error);
       toast.error("error");
@@ -89,7 +105,7 @@ export default function EditForm() {
 
   return (
     <form onSubmit={onSubmit} className="form">
-      <h1>Create Blog Post</h1>
+      <h1>Update Blog Post</h1>
       <div className="form__box">
         <div>
           <label htmlFor="placeEng">Place (Eng)</label>
