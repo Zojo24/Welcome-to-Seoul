@@ -11,20 +11,30 @@ import TipDetail from "../pages/TipDetail";
 import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage";
 
-export default function Router() {
+interface RouterProps {
+  authenticated: boolean;
+}
+export default function Router({ authenticated }: RouterProps) {
   return (
     <Routes>
-      <Route path="/" element={<MainPage />} />
-      <Route path="/traveling-tips" element={<TravelingTips />} />
-      <Route path="/must-visit" element={<MustVisit />} />
-      <Route path="/must-try" element={<MustTry />} />
-      <Route path="/my-place" element={<MyPlace />} />
-      <Route path="/blog-post" element={<PostForm />} />
-      <Route path="/place-detail/:id" element={<PlaceDetail />} />
-      <Route path="/blog-tip" element={<TipForm />} />
-      <Route path="/tip-detail/:id" element={<TipDetail />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/sign-up" element={<SignUpPage />} />
+      {authenticated ? (
+        <>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/traveling-tips" element={<TravelingTips />} />
+          <Route path="/must-visit" element={<MustVisit />} />
+          <Route path="/must-try" element={<MustTry />} />{" "}
+          <Route path="/place-detail/:id" element={<PlaceDetail />} />
+          <Route path="/tip-detail/:id" element={<TipDetail />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/sign-up" element={<SignUpPage />} />
+        </>
+      ) : (
+        <>
+          <Route path="/my-place" element={<MyPlace />} />
+          <Route path="/blog-post" element={<PostForm />} />
+          <Route path="/blog-tip" element={<TipForm />} />
+        </>
+      )}
     </Routes>
   );
 }

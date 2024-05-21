@@ -1,6 +1,16 @@
 import { Link } from "react-router-dom";
 import "./LoginPage.scss";
+// import { useState } from "react";
+
 export default function LoginPage() {
+  // const [email, setEmail] = useState<string>("");
+  // const [password, setPassword] = useState<string>("");
+
+  // const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   try {
+  //   } catch (error) {}
+  // onSubmit={onSubmit}};
   return (
     <form className="login">
       <div className="login_box">

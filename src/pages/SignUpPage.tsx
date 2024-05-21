@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./LoginPage.scss";
+
 export default function SignUpPage() {
   return (
     <form className="login">
