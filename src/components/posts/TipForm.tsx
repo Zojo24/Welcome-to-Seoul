@@ -1,21 +1,41 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./TipForm.scss";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebaseApp";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { TipProps } from "pages/TipDetail";
 
 export default function TipForm() {
+  const params = useParams();
   const [title, setTitle] = useState<string>("");
   const [topic, setTopic] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const navigate = useNavigate();
 
+  const getPost = useCallback(async () => {
+    if (params.id) {
+      const docRef = doc(db, "Tips", params.id);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data() as TipProps;
+        setTitle(data.title);
+        setTopic(data.topic);
+        setContent(data.content as string);
+      }
+    }
+  }, [params.id]);
+
+  useEffect(() => {
+    getPost();
+  }, [getPost]);
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await addDoc(collection(db, "Tips"), {
+      const docRef = await addDoc(collection(db, "Tips"), {
         title,
         topic,
         content,
@@ -26,7 +46,7 @@ export default function TipForm() {
         }),
       });
       toast.success("Successfully uploaded the posting");
-      navigate("/");
+      navigate(`/tip-detail/${docRef.id}`);
     } catch (e) {
       console.log(e);
       toast.error("error");

@@ -39,7 +39,7 @@ export default function Router({ authenticated }: RouterProps) {
           <Route path="/" element={<MainPage />} />
           <Route path="/traveling-tips" element={<TravelingTips />} />
           <Route path="/must-visit" element={<MustVisit />} />
-          <Route path="/must-try" element={<MustTry />} />{" "}
+          <Route path="/must-try" element={<MustTry />} />
           <Route path="/place-detail/:id" element={<PlaceDetail />} />
           <Route path="/tip-detail/:id" element={<TipDetail />} />
           <Route path="/login" element={<LoginPage />} />
