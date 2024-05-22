@@ -100,9 +100,9 @@ export default function PlaceDetail() {
           </div>
           {user && (
             <div className="save">
-              <button type="button" className="save-btn">
+              {/* <button type="button" className="save-btn">
                 Bookmark!
-              </button>
+              </button> */}
               <Link to={`/place-detail/edit/${post?.id}`}>
                 <button type="button" className="edit-btn">
                   Edit{" "}
