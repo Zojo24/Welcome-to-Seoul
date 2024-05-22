@@ -5,7 +5,6 @@
 }
 .detail {
   width: 45rem;
-  height: 100vh;
   background-color: $white;
   padding: 5rem;
   display: flex;
@@ -58,9 +57,9 @@
       justify-content: right;
       align-items: center;
       .edit-btn,
+      .delete-btn,
       .save-btn {
         width: 8rem;
-        background-color: #c99bfd;
         border: none;
         padding: 10px;
         border-radius: 10px;
@@ -77,6 +76,9 @@
           font-weight: 400;
           text-decoration: none;
         }
+      }
+      .delete-btn {
+        background-color: red;
       }
     }
   }
