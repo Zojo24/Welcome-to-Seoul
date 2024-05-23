@@ -42,14 +42,25 @@
     .recommendation-box {
       margin-top: 5rem;
       margin-bottom: 5rem;
-      font-size: 1.6rem;
-      background-color: $yellow;
-      padding: 10px;
-      border-radius: 10px;
-    }
-    .recommendation {
-      font-size: 1.5rem;
-      background-color: $white;
+
+      .box-title {
+        width: fit-content;
+        background-color: $yellow;
+        font-size: 1.6rem;
+        padding: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        margin-bottom: -25px;
+      }
+      .recommendation {
+        border: 3px solid $yellow;
+        font-size: 1.5rem;
+        background-color: $white;
+        padding: 10px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
     }
 
     .save {

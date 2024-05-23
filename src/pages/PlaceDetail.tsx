@@ -106,7 +106,7 @@ export default function PlaceDetail() {
           <div className="name">{post.placeKor}</div>
           <p className="address">{post.address}</p>
           <div className="recommendation-box">
-            Recommendation:
+            <div className="box-title">Recommendation </div>
             <p className="recommendation">{post.recommendation}</p>
           </div>
           {user && post?.email === user.email && (

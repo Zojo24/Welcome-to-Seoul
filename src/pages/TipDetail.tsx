@@ -34,7 +34,7 @@ export default function TipDetail() {
               console.log(error);
             });
           }
-          await deleteDoc(doc(db, "Tips", post.id));
+          await deleteDoc(doc(db, "tips", post.id));
           toast.success("Successfully deleted the post.");
           navigate("/traveling-tips");
         } catch (error) {
