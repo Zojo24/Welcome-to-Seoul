@@ -16,6 +16,7 @@ type PlaceProps = {
   category?: "Select!" | "Traveling Tips" | "Must Visit" | "Must Try";
   recommendation?: string;
   email: string;
+  imageUrl?: string;
 };
 
 export default function PlaceDetail() {
@@ -70,6 +71,7 @@ export default function PlaceDetail() {
             category: data.category,
             recommendation: data.recommendation,
             email: data.email,
+            imageUrl: data.imageUrl,
           } as PlaceProps);
         } else {
           setError("Document does not exist");
@@ -87,7 +89,7 @@ export default function PlaceDetail() {
     <div className="box-detail">
       <div className="detail">
         <div className="detail_img">
-          <img src="/1.jpeg" alt="Watermelon slices on a plate" />
+          <img src={post?.imageUrl} alt="attachment" />
         </div>
         <div className="detail_info">
           <div className="name-and-rating">
