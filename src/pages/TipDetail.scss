@@ -45,9 +45,9 @@
     justify-content: right;
     align-items: center;
     .edit-btn,
+    .delete-btn,
     .save-btn {
       width: 8rem;
-      background-color: #c99bfd;
       border: none;
       padding: 10px;
       border-radius: 10px;
@@ -64,6 +64,12 @@
         font-weight: 400;
         text-decoration: none;
       }
+    }
+    .delete-btn {
+      background-color: rgb(253, 125, 125);
+    }
+    .edit-btn {
+      background-color: #c99bfd;
     }
   }
 }

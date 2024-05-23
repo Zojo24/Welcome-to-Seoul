@@ -1,9 +1,10 @@
-import { doc, getDoc } from "firebase/firestore";
+import { deleteDoc, doc, getDoc } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { db } from "../firebaseApp";
 import "./PlaceDetail.scss";
 import AuthContext from "context/AuthContext";
+import { toast } from "react-toastify";
 
 type PlaceProps = {
   id: string;
@@ -14,6 +15,7 @@ type PlaceProps = {
   rating: string;
   category?: "Select!" | "Traveling Tips" | "Must Visit" | "Must Try";
   recommendation?: string;
+  email: string;
 };
 
 export default function PlaceDetail() {
@@ -21,6 +23,34 @@ export default function PlaceDetail() {
   const [post, setPost] = useState<PlaceProps | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleDelete = async () => {
+    if (post) {
+      const confirm = window.confirm("Are you sure you want to delete it?");
+      if (confirm) {
+        try {
+          await deleteDoc(doc(db, "posts", post.id));
+          toast.success("Successfully deleted the post.");
+          switch (post.category) {
+            case "Must Try":
+              navigate("/must-try");
+              break;
+            case "Must Visit":
+              navigate("/must-visit");
+              break;
+            default:
+              navigate("/");
+              break;
+          }
+        } catch (error) {
+          toast.error("Failed to delete the post.");
+        }
+      }
+    } else {
+      toast.error("Post is not found.");
+    }
+  };
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -39,6 +69,7 @@ export default function PlaceDetail() {
             rating: data.rating,
             category: data.category,
             recommendation: data.recommendation,
+            email: data.email,
           } as PlaceProps);
         } else {
           setError("Document does not exist");
@@ -69,12 +100,23 @@ export default function PlaceDetail() {
             Recommendation:
             <p className="recommendation">{post.recommendation}</p>
           </div>
-          {user && (
+          {user && post?.email === user.email && (
             <div className="save">
-              <button className="save-btn">Bookmark!</button>
+              {/* <button type="button" className="save-btn">
+                Bookmark!
+              </button> */}
               <Link to={`/place-detail/edit/${post?.id}`}>
-                <button className="edit-btn">Edit </button>
+                <button type="button" className="edit-btn">
+                  Edit
+                </button>
               </Link>
+              <button
+                type="button"
+                className="delete-btn"
+                onClick={handleDelete}
+              >
+                Delete
+              </button>
             </div>
           )}
         </div>
