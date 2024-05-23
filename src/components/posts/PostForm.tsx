@@ -1,12 +1,14 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import "./PostForm.scss";
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
-import { db } from "../../firebaseApp";
+import { db, storage } from "../../firebaseApp";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { PostProps } from "pages/MustTry";
 import AuthContext from "context/AuthContext";
+import { v4 as uuidv4 } from "uuid";
+import { getDownloadURL, ref, uploadString } from "firebase/storage";
 
 export default function PostForm() {
   type CategoryType = "Select!" | "Must Visit" | "Must Try";
@@ -22,6 +24,8 @@ export default function PostForm() {
   const [rating, setRating] = useState<string>("");
   const [comment, setComment] = useState<string>("");
   const [recommendation, setRecommendation] = useState<string>("");
+  const [imageFile, setImageFile] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const getPost = useCallback(async () => {
@@ -48,8 +52,17 @@ export default function PostForm() {
   }, [getPost]);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setIsSubmitting(true);
+    const key = `${user?.uid}/${uuidv4()}`;
+    const storageRef = ref(storage, key);
     e.preventDefault();
+
     try {
+      let imageUrl = "";
+      if (imageFile) {
+        const data = await uploadString(storageRef, imageFile, "data_url");
+        imageUrl = await getDownloadURL(data.ref);
+      }
       const docRef = await addDoc(collection(db, "posts"), {
         placeEng,
         placeKor,
@@ -64,9 +77,12 @@ export default function PostForm() {
           second: "2-digit",
         }),
         email: user?.email,
+        imageUrl: imageUrl,
       });
+      setImageFile(null);
       toast.success("Successfully uploaded the posting");
       navigate(`/place-detail/${docRef.id}`);
+      setIsSubmitting(false);
     } catch (error) {
       toast.error("error");
     }
@@ -105,6 +121,29 @@ export default function PostForm() {
       default:
         break;
     }
+  };
+
+  const handleUploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const {
+      target: { files },
+    } = e;
+
+    const file = files?.[0];
+    if (!file) return;
+
+    const fileReader = new FileReader();
+    fileReader?.readAsDataURL(file);
+
+    fileReader.onloadend = () => {
+      const result = fileReader.result;
+      if (result) {
+        setImageFile(result as string);
+      }
+    };
+  };
+
+  const handleDeleteImage = () => {
+    setImageFile(null);
   };
 
   return (
@@ -182,6 +221,26 @@ export default function PostForm() {
         </div>
         <div>
           <label htmlFor="recommendation">Recommendation</label>
+          <div className="image-area">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleUploadImage}
+              className="btn-upload"
+            />
+            {imageFile && (
+              <div className="attachment">
+                <img src={imageFile} alt="attachment" />
+                <button
+                  className="btn-clear"
+                  type="button"
+                  onClick={handleDeleteImage}
+                >
+                  Delete
+                </button>
+              </div>
+            )}
+          </div>
           <textarea
             id="recommendation"
             name="recommendation"
@@ -191,7 +250,12 @@ export default function PostForm() {
           />
         </div>
         <div className="form_block">
-          <input type="submit" className="btn-submit" value="Submit" />
+          <input
+            type="submit"
+            className="btn-submit"
+            value="Submit"
+            disabled={isSubmitting}
+          />
         </div>
       </div>
     </form>

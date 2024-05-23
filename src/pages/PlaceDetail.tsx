@@ -1,10 +1,11 @@
 import { deleteDoc, doc, getDoc } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { db } from "../firebaseApp";
+import { db, storage } from "../firebaseApp";
 import "./PlaceDetail.scss";
 import AuthContext from "context/AuthContext";
 import { toast } from "react-toastify";
+import { ref, deleteObject } from "firebase/storage";
 
 type PlaceProps = {
   id: string;
@@ -16,6 +17,7 @@ type PlaceProps = {
   category?: "Select!" | "Traveling Tips" | "Must Visit" | "Must Try";
   recommendation?: string;
   email: string;
+  imageUrl?: string;
 };
 
 export default function PlaceDetail() {
@@ -24,12 +26,18 @@ export default function PlaceDetail() {
   const [error, setError] = useState<string | null>(null);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const imageRef = ref(storage, post?.imageUrl);
 
   const handleDelete = async () => {
     if (post) {
       const confirm = window.confirm("Are you sure you want to delete it?");
       if (confirm) {
         try {
+          if (post?.imageUrl) {
+            deleteObject(imageRef).catch((error) => {
+              console.log(error);
+            });
+          }
           await deleteDoc(doc(db, "posts", post.id));
           toast.success("Successfully deleted the post.");
           switch (post.category) {
@@ -70,6 +78,7 @@ export default function PlaceDetail() {
             category: data.category,
             recommendation: data.recommendation,
             email: data.email,
+            imageUrl: data.imageUrl,
           } as PlaceProps);
         } else {
           setError("Document does not exist");
@@ -87,7 +96,7 @@ export default function PlaceDetail() {
     <div className="box-detail">
       <div className="detail">
         <div className="detail_img">
-          <img src="/1.jpeg" alt="Watermelon slices on a plate" />
+          <img src={post?.imageUrl} alt="attachment" />
         </div>
         <div className="detail_info">
           <div className="name-and-rating">
