@@ -127,7 +127,6 @@ export default function PostForm() {
     const {
       target: { files },
     } = e;
-    console.log(files);
 
     const file = files?.[0];
     if (!file) return;

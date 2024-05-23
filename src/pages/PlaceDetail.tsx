@@ -1,10 +1,11 @@
 import { deleteDoc, doc, getDoc } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { db } from "../firebaseApp";
+import { db, storage } from "../firebaseApp";
 import "./PlaceDetail.scss";
 import AuthContext from "context/AuthContext";
 import { toast } from "react-toastify";
+import { ref, deleteObject } from "firebase/storage";
 
 type PlaceProps = {
   id: string;
@@ -25,12 +26,18 @@ export default function PlaceDetail() {
   const [error, setError] = useState<string | null>(null);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const imageRef = ref(storage, post?.imageUrl);
 
   const handleDelete = async () => {
     if (post) {
       const confirm = window.confirm("Are you sure you want to delete it?");
       if (confirm) {
         try {
+          if (post?.imageUrl) {
+            deleteObject(imageRef).catch((error) => {
+              console.log(error);
+            });
+          }
           await deleteDoc(doc(db, "posts", post.id));
           toast.success("Successfully deleted the post.");
           switch (post.category) {

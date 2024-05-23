@@ -68,7 +68,6 @@
         box-shadow: none;
         font-size: 13px;
         height: fit-content;
-
         &::file-selector-button {
           content: "Choose File";
           background-color: $purple-btn;
@@ -85,18 +84,26 @@
           }
         }
       }
-      .btn-clear {
-        background-color: $delete-btn;
-        color: white;
-        font-weight: 700;
-        border: none;
-        padding: 8px 15px;
-        border-radius: 10px;
-        margin: 1px;
-        cursor: pointer;
+      .attachment {
+        display: flex;
+        align-items: center;
+        img {
+          max-height: 10rem;
+          margin-right: 10px;
+        }
+        .btn-clear {
+          background-color: $delete-btn;
+          color: white;
+          font-weight: 700;
+          border: none;
+          padding: 8px 15px;
+          border-radius: 10px;
+          margin: 1px;
+          cursor: pointer;
 
-        &:hover {
-          background-color: $delete-hover;
+          &:hover {
+            background-color: $delete-hover;
+          }
         }
       }
     }
