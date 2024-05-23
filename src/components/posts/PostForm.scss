@@ -41,18 +41,71 @@
       font-size: 16px;
       @include font;
       border-radius: 0.3rem;
-      border: 1px solid $purple;
+      border: none;
       box-shadow: 0 4px 6px $shadow-color;
       width: 100%;
     }
 
     select {
-      border: 1px solid #cea6fc;
+      border: none;
       height: 40px;
       padding: 0px 10px;
       font-size: 16px;
       border-radius: 0.3rem;
       box-shadow: 0 4px 6px $shadow-color;
+    }
+    .image-area {
+      background-color: $white;
+      padding: 10px;
+      border-radius: 0.3rem;
+      box-shadow: 0 4px 6px $shadow-color;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .btn-upload {
+        border: none;
+        box-shadow: none;
+        font-size: 13px;
+        height: fit-content;
+        &::file-selector-button {
+          content: "Choose File";
+          background-color: $purple-btn;
+          color: white;
+          font-weight: 700;
+          border: none;
+          padding: 8px 15px;
+          border-radius: 10px;
+          margin: 1px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: $purple-hover;
+          }
+        }
+      }
+      .attachment {
+        display: flex;
+        align-items: center;
+        img {
+          max-height: 10rem;
+          margin-right: 10px;
+        }
+        .btn-clear {
+          background-color: $delete-btn;
+          color: white;
+          font-weight: 700;
+          border: none;
+          padding: 8px 15px;
+          border-radius: 10px;
+          margin: 1px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: $delete-hover;
+          }
+        }
+      }
     }
 
     textarea {
@@ -62,7 +115,7 @@
       padding-left: 10px;
       font-size: 16px;
       border-radius: 0.3rem;
-      border: 1px solid $purple;
+      border: none;
       box-shadow: 0 4px 6px $shadow-color;
       width: 100%;
       @include font;
@@ -88,17 +141,20 @@
       display: flex;
       justify-content: flex-end;
       margin-top: 1rem;
-
       .btn-submit {
         width: 10rem;
         height: fit-content;
-        background-color: #c99bfd;
+        background-color: $purple-btn;
         box-shadow: 0 4px 6px $shadow-color;
         font-family: "Jersey 10", sans-serif;
         font-size: 1.5rem;
         font-weight: 600;
         color: $white;
         cursor: pointer;
+
+        &:hover {
+          background-color: $purple-hover;
+        }
       }
     }
   }

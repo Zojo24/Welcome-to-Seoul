@@ -10,6 +10,7 @@ type PlaceProps = {
   rating: string;
   category?: "Select!" | "Traveling Tips" | "Must Visit" | "Must Try";
   recommendation?: string;
+  imageUrl?: string;
 };
 
 export default function Place({
@@ -18,6 +19,7 @@ export default function Place({
   address,
   comment,
   rating,
+  imageUrl,
 }: PlaceProps) {
   const navigate = useNavigate();
   const handleClick = () => {
@@ -26,7 +28,7 @@ export default function Place({
   return (
     <div className="container" onClick={handleClick}>
       <div className="image-wrapper">
-        <img src="/1.jpeg" alt="Watermelon slices on a plate" />
+        <img src={imageUrl} alt="attachment" />
       </div>
       <div className="info">
         <div className="name-and-rating">
