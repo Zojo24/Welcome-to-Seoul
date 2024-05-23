@@ -18,15 +18,14 @@
 .tip_detail {
   width: 45rem;
   height: 80vh;
-  background-color: $yellow;
+  background-color: #ffeec2;
   padding: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: top;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border: 1.1px solid $black;
+  border: none;
 
   .tip_title {
     font-size: 2.4rem;

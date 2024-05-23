@@ -21,7 +21,7 @@ export default function TravelingTips() {
   };
 
   useEffect(() => {
-    const postsRef = collection(db, "Tips");
+    const postsRef = collection(db, "tips");
     const postsQuery = query(postsRef, orderBy("createdAt", "desc"));
 
     onSnapshot(postsQuery, (snapShot) => {

@@ -12,11 +12,13 @@ export default function TipForm() {
   const [title, setTitle] = useState<string>("");
   const [topic, setTopic] = useState<string>("");
   const [content, setContent] = useState<string>("");
+  const [imageFile, setImageFile] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const getPost = useCallback(async () => {
     if (params.id) {
-      const docRef = doc(db, "Tips", params.id);
+      const docRef = doc(db, "tips", params.id);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
@@ -33,9 +35,10 @@ export default function TipForm() {
   }, [getPost]);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setIsSubmitting(true);
     e.preventDefault();
     try {
-      const docRef = await addDoc(collection(db, "Tips"), {
+      const docRef = await addDoc(collection(db, "tips"), {
         title,
         topic,
         content,
@@ -45,8 +48,10 @@ export default function TipForm() {
           second: "2-digit",
         }),
       });
+      setImageFile(null);
       toast.success("Successfully uploaded the posting");
       navigate(`/tip-detail/${docRef.id}`);
+      setIsSubmitting(false);
     } catch (e) {
       console.log(e);
       toast.error("error");
@@ -76,11 +81,34 @@ export default function TipForm() {
     }
   };
 
+  const handleUploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const {
+      target: { files },
+    } = e;
+
+    const file = files?.[0];
+    if (!file) return;
+
+    const fileReader = new FileReader();
+    fileReader?.readAsDataURL(file);
+
+    fileReader.onloadend = () => {
+      const result = fileReader.result;
+      if (result) {
+        setImageFile(result as string);
+      }
+    };
+  };
+
+  const handleDeleteImage = () => {
+    setImageFile(null);
+  };
+
   return (
     <form onSubmit={onSubmit} className="form_yellow">
       <h1>Create Blog Post</h1>
       <div className="form__box">
-        <div>
+        <>
           <label htmlFor="title">title</label>
           <input
             type="text"
@@ -89,8 +117,8 @@ export default function TipForm() {
             value={title}
             onChange={onChange}
           />
-        </div>
-        <div>
+        </>
+        <>
           <label htmlFor="topic">topic</label>
           <input
             type="text"
@@ -99,9 +127,29 @@ export default function TipForm() {
             value={topic}
             onChange={onChange}
           />
-        </div>
-        <div>
+        </>
+        <>
           <label htmlFor="content">content</label>
+          <div className="image-area">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleUploadImage}
+              className="btn-upload"
+            />
+            {imageFile && (
+              <div className="attachment">
+                <img src={imageFile} alt="attachment" />
+                <button
+                  className="btn-clear"
+                  type="button"
+                  onClick={handleDeleteImage}
+                >
+                  Delete
+                </button>
+              </div>
+            )}
+          </div>
           <textarea
             id="content"
             name="content"
@@ -109,9 +157,14 @@ export default function TipForm() {
             className="content"
             onChange={onChange}
           />
-        </div>
+        </>
         <div className="form_block">
-          <input type="submit" className="btn-submit" value="Submit" />
+          <input
+            type="submit"
+            className="btn-submit"
+            value="Submit"
+            disabled={isSubmitting}
+          />
         </div>
       </div>
     </form>
