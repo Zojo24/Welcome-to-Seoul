@@ -1,22 +1,28 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import "./TipForm.scss";
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
-import { db } from "../../firebaseApp";
+import { db, storage } from "../../firebaseApp";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { TipProps } from "pages/TipDetail";
+import AuthContext from "context/AuthContext";
+import { v4 as uuidv4 } from "uuid";
+import { getDownloadURL, ref, uploadString } from "firebase/storage";
 
 export default function TipForm() {
+  const { user } = useContext(AuthContext);
   const params = useParams();
   const [title, setTitle] = useState<string>("");
   const [topic, setTopic] = useState<string>("");
   const [content, setContent] = useState<string>("");
+  const [imageFile, setImageFile] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const getPost = useCallback(async () => {
     if (params.id) {
-      const docRef = doc(db, "Tips", params.id);
+      const docRef = doc(db, "tips", params.id);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
@@ -33,9 +39,18 @@ export default function TipForm() {
   }, [getPost]);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setIsSubmitting(true);
+    const key = `${user?.uid}/${uuidv4()}`;
+    const storageRef = ref(storage, key);
     e.preventDefault();
     try {
-      const docRef = await addDoc(collection(db, "Tips"), {
+      let imageUrl = "";
+      if (imageFile) {
+        const data = await uploadString(storageRef, imageFile, "data_url");
+        imageUrl = await getDownloadURL(data.ref);
+      }
+
+      const docRef = await addDoc(collection(db, "tips"), {
         title,
         topic,
         content,
@@ -44,9 +59,13 @@ export default function TipForm() {
           minute: "2-digit",
           second: "2-digit",
         }),
+        email: user?.email,
+        imageUrl: imageUrl,
       });
+      setImageFile(null);
       toast.success("Successfully uploaded the posting");
       navigate(`/tip-detail/${docRef.id}`);
+      setIsSubmitting(false);
     } catch (e) {
       console.log(e);
       toast.error("error");
@@ -76,11 +95,34 @@ export default function TipForm() {
     }
   };
 
+  const handleUploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const {
+      target: { files },
+    } = e;
+
+    const file = files?.[0];
+    if (!file) return;
+
+    const fileReader = new FileReader();
+    fileReader?.readAsDataURL(file);
+
+    fileReader.onloadend = () => {
+      const result = fileReader.result;
+      if (result) {
+        setImageFile(result as string);
+      }
+    };
+  };
+
+  const handleDeleteImage = () => {
+    setImageFile(null);
+  };
+
   return (
     <form onSubmit={onSubmit} className="form_yellow">
       <h1>Create Blog Post</h1>
       <div className="form__box">
-        <div>
+        <>
           <label htmlFor="title">title</label>
           <input
             type="text"
@@ -89,8 +131,8 @@ export default function TipForm() {
             value={title}
             onChange={onChange}
           />
-        </div>
-        <div>
+        </>
+        <>
           <label htmlFor="topic">topic</label>
           <input
             type="text"
@@ -99,9 +141,29 @@ export default function TipForm() {
             value={topic}
             onChange={onChange}
           />
-        </div>
-        <div>
+        </>
+        <>
           <label htmlFor="content">content</label>
+          <div className="image-area">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleUploadImage}
+              className="btn-upload"
+            />
+            {imageFile && (
+              <div className="attachment">
+                <img src={imageFile} alt="attachment" />
+                <button
+                  className="btn-clear"
+                  type="button"
+                  onClick={handleDeleteImage}
+                >
+                  Delete
+                </button>
+              </div>
+            )}
+          </div>
           <textarea
             id="content"
             name="content"
@@ -109,9 +171,14 @@ export default function TipForm() {
             className="content"
             onChange={onChange}
           />
-        </div>
+        </>
         <div className="form_block">
-          <input type="submit" className="btn-submit" value="Submit" />
+          <input
+            type="submit"
+            className="btn-submit"
+            value="Submit"
+            disabled={isSubmitting}
+          />
         </div>
       </div>
     </form>

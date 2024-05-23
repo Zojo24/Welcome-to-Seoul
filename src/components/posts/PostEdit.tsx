@@ -61,15 +61,15 @@ export default function PostEdit() {
 
     try {
       if (post) {
-        if (post?.imageUrl) {
-          const imageRef = ref(storage, post.imageUrl);
-          await deleteObject(imageRef).catch((error) => {
-            console.log(error);
-          });
-        }
+        let imageUrl = post.imageUrl || "";
+        if (imageFile && imageFile !== post.imageUrl) {
+          if (post?.imageUrl) {
+            const imageRef = ref(storage, post.imageUrl);
+            await deleteObject(imageRef).catch((error) => {
+              console.log(error);
+            });
+          }
 
-        let imageUrl = "";
-        if (imageFile) {
           const data = await uploadString(storageRef, imageFile, "data_url");
           imageUrl = await getDownloadURL(data.ref);
         }

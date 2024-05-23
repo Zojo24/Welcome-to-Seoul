@@ -168,40 +168,6 @@ body {
     }
   }
 }
-// .nav-bar {
-//   position: sticky;
-//   top: 3%;
-//   left: 3%;
-//   right: 3%;
-
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   background-color: $white;
-//   padding: 10px 40px;
-//   box-shadow: 0 4px 6px $shadow-color;
-//   border-radius: 10px;
-//   z-index: 10;
-//   margin-bottom: 3rem;
-//   .link {
-//     padding: 0.6rem;
-//     margin-right: 20px;
-//     color: $black;
-//     text-decoration: none;
-//     font-size: 23px;
-//     border-radius: 10px;
-
-//     &:last-child {
-//       margin-right: 0;
-//     }
-
-//     &:hover,
-//     &:focus {
-//       background-color: $yellow;
-//       font-weight: 600;
-//     }
-//   }
-// }
 
 // 푸터
 footer {
@@ -237,72 +203,89 @@ footer {
     position: relative;
     text-align: center;
     z-index: 2;
-  }
 
-  h1,
-  h2 {
-    position: relative;
-    z-index: 3;
-
-    &h1 {
-      font-size: 4rem;
+    h1,
+    h2 {
+      position: relative;
+      z-index: 3;
     }
-
-    &h2 {
+    & h1 {
+      font-size: 4rem;
+      margin: 0;
+    }
+    & h2 {
       font-size: 3rem;
     }
-  }
-  .background1,
-  .background2 {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 28rem;
-    height: 13rem;
-    padding: 1.2rem 2rem;
-    margin: 10px auto;
-    position: absolute;
-    z-index: 1;
 
-    &.background1 {
-      border: 3px solid $purple;
-      filter: blur(4px);
-      border-radius: 54% 46% 68% 30% / 69% 39% 62% 32%;
-      animation: shake 5s ease-in-out infinite;
+    @media (max-width: 1230px) {
+      & h1 {
+        font-size: 3rem;
+      }
+      & h2 {
+        font-size: 2rem;
+      }
     }
-  }
+    @media (max-width: 700px) {
+      & h1 {
+        font-size: 2.5rem;
+      }
+      & h2 {
+        font-size: 1.5rem;
+      }
+    }
 
-  @keyframes shake {
-    0%,
-    100% {
-      transform: translate(-50%, -50%) rotate(0deg);
-    }
-    25% {
-      transform: translate(-50%, -50%) rotate(10deg);
-    }
-    75% {
-      transform: translate(-50%, -50%) rotate(-10deg);
-    }
-  }
+    .background1,
+    .background2 {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 28rem;
+      height: 13rem;
+      padding: 1.2rem 2rem;
+      margin: 10px auto;
+      position: absolute;
+      z-index: 1;
 
-  .background2 {
-    background-color: $white;
-    filter: blur(10px);
-    border-radius: 50%;
-    width: 35rem;
-    animation: shake-reverse 5s ease-in-out infinite;
-  }
+      &.background1 {
+        border: 3px solid $purple;
+        filter: blur(4px);
+        border-radius: 54% 46% 68% 30% / 69% 39% 62% 32%;
+        animation: shake 5s ease-in-out infinite;
+      }
+    }
 
-  @keyframes shake-reverse {
-    0%,
-    100% {
-      transform: translate(-50%, -50%) rotate(0deg);
+    @keyframes shake {
+      0%,
+      100% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+      25% {
+        transform: translate(-50%, -50%) rotate(10deg);
+      }
+      75% {
+        transform: translate(-50%, -50%) rotate(-10deg);
+      }
     }
-    25% {
-      transform: translate(-50%, -50%) rotate(-10deg);
+
+    .background2 {
+      background-color: $white;
+      filter: blur(10px);
+      border-radius: 50%;
+      width: 35rem;
+      animation: shake-reverse 5s ease-in-out infinite;
     }
-    75% {
-      transform: translate(-50%, -50%) rotate(10deg);
+
+    @keyframes shake-reverse {
+      0%,
+      100% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+      25% {
+        transform: translate(-50%, -50%) rotate(-10deg);
+      }
+      75% {
+        transform: translate(-50%, -50%) rotate(10deg);
+      }
     }
   }
 
@@ -313,15 +296,15 @@ footer {
     .button1,
     .button2,
     .button3 {
-      width: 150px;
-      height: 150px;
+      width: 13rem;
+      height: 13rem;
       padding: 10px;
-      border: 1px solid $black;
+      border: none;
       border-radius: 20px;
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      margin: 10px;
+      margin: 2rem;
       font-size: 25px;
       cursor: pointer;
       text-decoration: none;
@@ -329,6 +312,12 @@ footer {
 
       .button__box--tips,
       .button__box {
+        width: 10rem;
+        height: 3rem;
+        font-size: 1.8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background-color: $white;
         padding: 9px;
         border: 1.1px solid $black;
@@ -357,6 +346,22 @@ footer {
     }
     .button3 {
       background-color: $white;
+    }
+    @media (max-width: 1230px) {
+      .button1,
+      .button2,
+      .button3 {
+        width: 12rem;
+        height: 12rem;
+        margin: 1rem;
+
+        .button__box--tips,
+        .button__box {
+          width: 8rem;
+          height: 2.7rem;
+          font-size: 1.5rem;
+        }
+      }
     }
   }
 }

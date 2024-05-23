@@ -11,6 +11,7 @@ type TipProps = {
   title: string;
   topic: string;
   content?: string;
+  index: number;
 };
 
 export default function TravelingTips() {
@@ -21,7 +22,7 @@ export default function TravelingTips() {
   };
 
   useEffect(() => {
-    const postsRef = collection(db, "Tips");
+    const postsRef = collection(db, "tips");
     const postsQuery = query(postsRef, orderBy("createdAt", "desc"));
 
     onSnapshot(postsQuery, (snapShot) => {
@@ -37,8 +38,8 @@ export default function TravelingTips() {
     <div className="page_container">
       <h1>Traveling</h1>
       <div className="places_list">
-        {posts.map((post) => (
-          <Tip key={post.id} {...post} />
+        {posts.map((post, index) => (
+          <Tip key={post.id} {...post} index={index} />
         ))}
       </div>
       <div className="btn-box">
