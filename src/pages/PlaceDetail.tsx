@@ -15,6 +15,7 @@ type PlaceProps = {
   rating: string;
   category?: "Select!" | "Traveling Tips" | "Must Visit" | "Must Try";
   recommendation?: string;
+  email: string;
 };
 
 export default function PlaceDetail() {
@@ -68,6 +69,7 @@ export default function PlaceDetail() {
             rating: data.rating,
             category: data.category,
             recommendation: data.recommendation,
+            email: data.email,
           } as PlaceProps);
         } else {
           setError("Document does not exist");
@@ -98,14 +100,14 @@ export default function PlaceDetail() {
             Recommendation:
             <p className="recommendation">{post.recommendation}</p>
           </div>
-          {user && (
+          {user && post?.email === user.email && (
             <div className="save">
               {/* <button type="button" className="save-btn">
                 Bookmark!
               </button> */}
               <Link to={`/place-detail/edit/${post?.id}`}>
                 <button type="button" className="edit-btn">
-                  Edit{" "}
+                  Edit
                 </button>
               </Link>
               <button

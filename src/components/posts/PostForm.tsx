@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import "./PostForm.scss";
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebaseApp";
@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { PostProps } from "pages/MustTry";
+import AuthContext from "context/AuthContext";
 
 export default function PostForm() {
   type CategoryType = "Select!" | "Must Visit" | "Must Try";
@@ -13,7 +14,7 @@ export default function PostForm() {
   const categories: CategoryType[] = ["Select!", "Must Visit", "Must Try"];
 
   const params = useParams();
-
+  const { user } = useContext(AuthContext);
   const [placeEng, setPlaceEng] = useState<string>("");
   const [placeKor, setPlaceKor] = useState<string>("");
   const [address, setAddress] = useState<string>("");
@@ -62,6 +63,7 @@ export default function PostForm() {
           minute: "2-digit",
           second: "2-digit",
         }),
+        email: user?.email,
       });
       toast.success("Successfully uploaded the posting");
       navigate(`/place-detail/${docRef.id}`);
