@@ -1,13 +1,17 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import "./TipForm.scss";
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
-import { db } from "../../firebaseApp";
+import { db, storage } from "../../firebaseApp";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { TipProps } from "pages/TipDetail";
+import AuthContext from "context/AuthContext";
+import { v4 as uuidv4 } from "uuid";
+import { getDownloadURL, ref, uploadString } from "firebase/storage";
 
 export default function TipForm() {
+  const { user } = useContext(AuthContext);
   const params = useParams();
   const [title, setTitle] = useState<string>("");
   const [topic, setTopic] = useState<string>("");
@@ -36,8 +40,16 @@ export default function TipForm() {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsSubmitting(true);
+    const key = `${user?.uid}/${uuidv4()}`;
+    const storageRef = ref(storage, key);
     e.preventDefault();
     try {
+      let imageUrl = "";
+      if (imageFile) {
+        const data = await uploadString(storageRef, imageFile, "data_url");
+        imageUrl = await getDownloadURL(data.ref);
+      }
+
       const docRef = await addDoc(collection(db, "tips"), {
         title,
         topic,
@@ -47,6 +59,8 @@ export default function TipForm() {
           minute: "2-digit",
           second: "2-digit",
         }),
+        email: user?.email,
+        imageUrl: imageUrl,
       });
       setImageFile(null);
       toast.success("Successfully uploaded the posting");

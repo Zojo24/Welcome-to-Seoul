@@ -1,10 +1,11 @@
 import { deleteDoc, doc, getDoc } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { db } from "../firebaseApp";
+import { db, storage } from "../firebaseApp";
 import "./TipDetail.scss";
 import AuthContext from "context/AuthContext";
 import { toast } from "react-toastify";
+import { deleteObject, ref } from "@firebase/storage";
 
 export type TipProps = {
   id: string;
@@ -12,6 +13,7 @@ export type TipProps = {
   topic: string;
   content?: string;
   email: string;
+  imageUrl?: string;
 };
 
 export default function TipDetail() {
@@ -20,12 +22,18 @@ export default function TipDetail() {
   const [error, setError] = useState<string | null>(null);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const imageRef = ref(storage, post?.imageUrl);
 
   const handleDelete = async () => {
     if (post) {
       const confirm = window.confirm("Are you sure you want to delete it?");
       if (confirm) {
         try {
+          if (post?.imageUrl) {
+            deleteObject(imageRef).catch((error) => {
+              console.log(error);
+            });
+          }
           await deleteDoc(doc(db, "Tips", post.id));
           toast.success("Successfully deleted the post.");
           navigate("/traveling-tips");
@@ -52,6 +60,7 @@ export default function TipDetail() {
             topic: data.topic,
             content: data.content,
             email: data.email,
+            imageUrl: data.imageUrl,
           } as TipProps);
         } else {
           setError("Document does not exist");
@@ -69,6 +78,9 @@ export default function TipDetail() {
   return (
     <div className="box-tip">
       <div className="tip_detail">
+        <div className="detail_img">
+          <img src={post?.imageUrl} alt="attachment" />
+        </div>
         <span className="tip_title">{post.title}</span>
         <p className="tip_topic">Topic : {post.topic}</p>
 
