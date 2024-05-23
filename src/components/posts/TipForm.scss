@@ -41,18 +41,9 @@
       font-size: 16px;
       @include font;
       border-radius: 0.3rem;
-      border: 1px solid #ffcc00;
+      border: none;
       box-shadow: 0 4px 6px rgb(255, 183, 0, 0.5);
       width: 100%;
-    }
-
-    select {
-      border: 1px solid #ffcc00;
-      height: 40px;
-      padding: 0px 20px;
-      font-size: 16px;
-      border-radius: 0.3rem;
-      box-shadow: 0 4px 6px rgb(255, 183, 0, 0.5);
     }
 
     textarea {
@@ -62,7 +53,7 @@
       padding-left: 10px;
       font-size: 16px;
       border-radius: 0.3rem;
-      border: 1px solid #ffcc00;
+      border: none;
       box-shadow: 0 4px 6px rgb(255, 183, 0, 0.5);
       width: 100%;
       @include font;
@@ -75,14 +66,18 @@
       .btn-submit {
         width: 10rem;
         height: fit-content;
-        border: 1px solid #ffcc00;
-        background-color: #ffcc00;
-        box-shadow: 0 4px 6px rgb(255, 183, 0, 0.5);
+        border: none;
+        box-shadow: 0 4px 6px rgb(255, 190, 70, 0.5);
+        background-color: #ffbe46;
         font-family: "Jersey 10", sans-serif;
         font-size: 1.5rem;
         font-weight: 600;
         color: $white;
         cursor: pointer;
+
+        &:hover {
+          background-color: #f9a60c;
+        }
       }
     }
   }
