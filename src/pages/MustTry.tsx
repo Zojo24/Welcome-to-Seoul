@@ -20,6 +20,7 @@ export type PostProps = {
   rating: string;
   category?: "Select!" | "Must Visit" | "Must Try";
   recommendation?: string;
+  imageUrl: string;
 };
 
 export default function MustTry() {
