@@ -3,7 +3,7 @@
 .container {
   margin: 2rem 0;
   display: flex;
-  min-width: 65rem;
+  max-width: 55rem;
   max-height: 15rem;
   border-radius: 20px;
   overflow: hidden;
@@ -62,7 +62,7 @@
   }
 
   @media (max-width: 1100px) {
-    min-width: 40rem;
+    max-width: 40rem;
     max-height: 11rem;
     .image-wrapper img {
       width: 10rem;
@@ -91,7 +91,7 @@
   }
 
   @media (max-width: 710px) {
-    min-width: 20rem;
+    max-width: 28rem;
     .image-wrapper img {
       width: 6rem;
     }
