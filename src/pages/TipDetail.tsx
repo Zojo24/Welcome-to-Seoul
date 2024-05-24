@@ -6,6 +6,7 @@ import "./TipDetail.scss";
 import AuthContext from "context/AuthContext";
 import { toast } from "react-toastify";
 import { deleteObject, ref } from "@firebase/storage";
+import Loading from "components/Loading";
 
 export type TipProps = {
   id: string;
@@ -23,6 +24,7 @@ export default function TipDetail() {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const imageRef = ref(storage, post?.imageUrl);
+  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
 
   const handleDelete = async () => {
     if (post) {
@@ -75,10 +77,19 @@ export default function TipDetail() {
   if (!post) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
+  const handleImageLoad = () => {
+    setIsImageLoaded(true);
+  };
+
   return (
     <div className="box-tip">
       <div className="tip_detail">
-        <div className="detail_img">
+        {!isImageLoaded && <Loading />}
+        <div
+          className="detail_img"
+          onLoad={handleImageLoad}
+          style={{ display: isImageLoaded ? "block" : "none" }}
+        >
           <img src={post?.imageUrl} alt="attachment" />
         </div>
         <span className="tip_title">{post.title}</span>

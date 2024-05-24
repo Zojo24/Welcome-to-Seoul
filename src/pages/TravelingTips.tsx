@@ -36,7 +36,7 @@ export default function TravelingTips() {
 
   return (
     <div className="page_container">
-      <h1>Traveling</h1>
+      <h1>Traveling Tips</h1>
       <div className="places_list">
         {posts.map((post, index) => (
           <Tip key={post.id} {...post} index={index} />

@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./Place.scss";
+import { useState } from "react";
+import ImageLoading from "./ImageLoading";
 
 type PlaceProps = {
   id: string;
@@ -22,13 +24,26 @@ export default function Place({
   imageUrl,
 }: PlaceProps) {
   const navigate = useNavigate();
+  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
+
   const handleClick = () => {
     navigate(`/place-detail/${id}`);
   };
+
+  const handleImageLoad = () => {
+    setIsImageLoaded(true);
+  };
+
   return (
     <div className="container" onClick={handleClick}>
       <div className="image-wrapper">
-        <img src={imageUrl} alt="attachment" />
+        {!isImageLoaded && <ImageLoading />}
+        <img
+          src={imageUrl}
+          alt="attachment"
+          onLoad={handleImageLoad}
+          style={{ display: isImageLoaded ? "block" : "none" }}
+        />
       </div>
       <div className="info">
         <div className="name-and-rating">
