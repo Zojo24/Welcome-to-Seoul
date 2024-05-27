@@ -1,30 +1,72 @@
-# React + TypeScript + Vite
+## 개인 프로젝트 소개
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+개인 프로젝트로는 게시판 CRUD 기능을 중심으로 한 웹 애플리케이션을 선택했습니다. 이 프로젝트를 통해 기획부터 개발, 배포까지 전체 과정을 독립적으로 경험하고자 하였습니다.
 
-Currently, two official plugins are available:
+서울을 처음 방문하는 외국인들을 대상으로 한국 문화를 소개하고, 서울의 주요 관광지 및 음식점을 안내하는 웹 페이지를 한 달 이내에 제작하는 것을 목표로 삼았습니다. 현재 1차 배포를 완료한 상태이며, 댓글 기능과 지도 기능을 추가하여 2차 배포를 계획하고 있습니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### ► 프로젝트 기간
 
-## Expanding the ESLint configuration
+2024 / 05 / 07 ~ 2024 / 05 / 22 (1차 배포: 16일)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+<br/>
 
-- Configure the top-level `parserOptions` property like this:
+### ► 배포 링크
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+✅ https://welcome-to-seoul.vercel.app/
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+**테스트계정** ( ID: test@test.com / PW: 123456 )
+
+<br/>
+
+### ► 기술 스택 선정
+
+TypeScript, React, SCSS, Vercel, Firebase
+<br>
+
+**각 기술 스택을 선택한 이유:**
+
+- **TypeScript**
+  정적 타입 검사 기능을 통해 코드 작성 시 타입 오류를 미리 발견할 수 있어, 런타임 에러를 줄이고 코드의 안정성을 높일 수 있습니다.
+
+- **React**
+  UI를 독립적이고 재사용 가능한 컴포넌트로 나누어 개발함으로써, 복잡한 애플리케이션을 체계적으로 관리할 수 있습니다.
+
+- **SCSS**
+  CSS의 기본 기능을 확장하여 변수, 중첩 규칙, 믹스인 등을 사용함으로써, 스타일 시트의 유지보수성을 높이고 코드 재사용성을 강화합니다.
+
+- **Vercel**
+  손쉽고 빠르게 애플리케이션을 배포할 수 있습니다. 자동화된 배포 프로세스를 통해 지속적 통합 및 배포(CI/CD)를 효율적으로 관리합니다.
+
+- **Firebase**
+  실시간 데이터 동기화 기능을 통해 사용자 경험을 향상시키고, 실시간으로 데이터를 처리할 수 있습니다. 또한 인증, 데이터베이스, 호스팅 등 다양한 기능을 통합 제공하여, 백엔드 인프라를 손쉽게 관리할 수 있습니다.
+  <br/><br/>
+
+### 📒 페이지 구성
+
+#### • 메인 페이지 (로그인 및 회원가입 )
+
+로그인하지 않아도 게시물을 확인할 수 있지만, 글을 작성하거나 수정하려면 회원가입 및 로그인이 필수입니다. 사용자의 권한에 따라 다른 화면을 제공합니다.
+
+| 메인 페이지                                                                                     | 로그인 및 회원가입                                                                              |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| ![](https://velog.velcdn.com/images/zojo24/post/ef83c3ca-2c47-4262-9615-d0366605ca65/image.png) | ![](https://velog.velcdn.com/images/zojo24/post/2115ecec-a16b-473c-8487-d828effc0b05/image.png) |
+
+<br/>
+
+#### • 게시판 페이지
+
+게시글 작성 시 이미지를 업로드하여 여행자들의 이해를 돕고자 했습니다. 장소나 맛집에 대한 글을 쓸 수 있으며, 여행 팁도 작성할 수 있습니다. 게시글 및 이미지는 쉽게 수정할 수 있습니다.
+
+| 게시판 페이지                                                                                                                                                                                        | 상세 페이지                                                                                                                                                                                     | 작성 페이지                                                                                                                                                                                         |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![](https://velog.velcdn.com/images/zojo24/post/629a8c40-47f9-4524-9954-837278a7ef71/image.png) <br> ![](https://velog.velcdn.com/images/zojo24/post/ad88960e-be25-499a-b37e-16fcb2015ff1/image.png) | ![](https://velog.velcdn.com/images/zojo24/post/66b3fdbd-0c22-4c3a-90e4-52f5f250d097/image.png) ![](https://velog.velcdn.com/images/zojo24/post/5f51eb0d-e80e-4c9e-81d1-c05d4571cc3e/image.png) | ![](https://velog.velcdn.com/images/zojo24/post/693e8936-2d30-4aea-a16d-fccb8c69c939/image.png) <br>![](https://velog.velcdn.com/images/zojo24/post/fb631a6a-216f-4807-a7ec-93c9ea5aa728/image.png) |
+
+<br/>
+
+### 📗 프로젝트를 진행하며 느낀점
+
+게시판 CRUD가 개인 프로젝트의 핵심 기능인 만큼, 프로젝트를 진행하면서 예상보다 큰 어려움은 없었습니다. 처음에는 실력이 많이 부족할 것 같아 다소 두려운 마음으로 시작했지만, 다행히 그 정도는 아니었습니다. 지난 프로젝트들과는 달리 REST API를 사용하지 않고 Firebase를 활용해 CRUD를 구현했지만, 전반적으로 CRUD에 대한 이해도는 확실하게 정립된 것 같습니다.
+
+한 달 이내에 1차 배포를 목표로 했던 것을 달성한 점이 매우 뿌듯합니다. 그러나 동시에 스스로의 실력을 제대로 파악하지 못하고 목표를 다소 낮게 설정한 것이 아닌가 하는 아쉬움도 있습니다. 앞으로 지도 기능과 댓글 기능을 추가하여 프로젝트를 고도화하고, 2차 배포를 목표로 더욱 발전시키고자 합니다.
+
+이번에 처음 기획부터 배포까지 혼자서 작업해 보면서 가장 많이 얻은 것은 자신감입니다. 꾸준히 공부하면서 연습하면 스스로 생각하는 것보다 많이 성장할 수 있다는 것을 깨달았습니다. 이 프로젝트를 통해 혼자서도 충분히 핵심 기능을 다 구현하고, 이를 배포할 수 있는 역량을 갖추게 되었다는 점이 큰 수확입니다!
