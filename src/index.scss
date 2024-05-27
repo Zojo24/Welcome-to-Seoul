@@ -25,7 +25,7 @@ body {
 
 .header {
   position: sticky;
-  top: 3%;
+  top: 2%;
   left: 3%;
   right: 3%;
 
@@ -37,7 +37,7 @@ body {
   box-shadow: 0 4px 6px $shadow-color;
   border-radius: 10px;
   z-index: 10;
-  margin-bottom: 2rem;
+  margin-bottom: 2.6rem;
 
   .logo {
     display: flex;
@@ -197,7 +197,7 @@ footer {
   display: flex;
   flex-direction: column;
   margin-top: 10rem;
-  min-height: 100vh;
+  height: 100vh;
 
   .title-container {
     position: relative;
