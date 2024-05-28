@@ -5,7 +5,7 @@ import { db, storage } from "../firebaseApp";
 import "./PlaceDetail.scss";
 import AuthContext from "context/AuthContext";
 import { toast } from "react-toastify";
-import Comment from "../components/comments/Comment";
+import CommentForm from "../components/comments/CommentForm";
 import { ref, deleteObject } from "firebase/storage";
 
 export type PlaceProps = {
@@ -129,7 +129,7 @@ export default function PlaceDetail() {
               </button>
             </div>
           )}
-          {user && <Comment post={post} />}
+          {user && <CommentForm post={post} />}
         </div>
       </div>
     </div>

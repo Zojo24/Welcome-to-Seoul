@@ -4,13 +4,13 @@ import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { db } from "firebaseApp";
 import AuthContext from "context/AuthContext";
 import { toast } from "react-toastify";
-import "../../components/comments/Comment.scss";
+import "../../components/comments/CommentForm.scss";
 
-export interface CommentProps {
+export interface CommentFormProps {
   post: PlaceProps | null;
 }
 
-export default function Comment({ post }: CommentProps) {
+export default function CommentForm({ post }: CommentFormProps) {
   const [comment, setComment] = useState<string>("");
   const { user } = useContext(AuthContext);
 
