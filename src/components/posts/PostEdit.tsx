@@ -5,7 +5,7 @@ import { db, storage } from "../../firebaseApp";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, useParams } from "react-router-dom";
-import { PostProps } from "../../pages/MustTry";
+import { PlaceProps } from "../../pages/PlaceDetail";
 import { v4 as uuidv4 } from "uuid";
 import {
   deleteObject,
@@ -21,7 +21,7 @@ export default function PostEdit() {
   const categories: CategoryType[] = ["Select!", "Must Visit", "Must Try"];
   const params = useParams();
   const { user } = useContext(AuthContext);
-  const [post, setPost] = useState<PostProps | null>(null);
+  const [post, setPost] = useState<PlaceProps | null>(null);
   const [placeEng, setPlaceEng] = useState<string>("");
   const [placeKor, setPlaceKor] = useState<string>("");
   const [address, setAddress] = useState<string>("");
@@ -39,7 +39,7 @@ export default function PostEdit() {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        const data = docSnap.data() as PostProps;
+        const data = docSnap.data() as PlaceProps;
         setPost({ ...data, id: docSnap.id });
         setPlaceEng(data.placeEng);
         setPlaceKor(data.placeKor || "");
@@ -48,7 +48,7 @@ export default function PostEdit() {
         setRating(data.rating);
         setComment(data.comment);
         setRecommendation(data.recommendation || "");
-        setImageFile(data.imageUrl);
+        setImageFile(data.imageUrl || null);
       }
     }
   }, [params.id]);

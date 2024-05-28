@@ -5,16 +5,17 @@ import { db, storage } from "../firebaseApp";
 import "./PlaceDetail.scss";
 import AuthContext from "context/AuthContext";
 import { toast } from "react-toastify";
+import Comment from "../components/comments/Comment";
 import { ref, deleteObject } from "firebase/storage";
 
-type PlaceProps = {
+export type PlaceProps = {
   id: string;
   placeEng: string;
   placeKor?: string;
   address: string;
   comment: string;
   rating: string;
-  category?: "Select!" | "Traveling Tips" | "Must Visit" | "Must Try";
+  category?: "Select!" | "Must Visit" | "Must Try";
   recommendation?: string;
   email: string;
   imageUrl?: string;
@@ -26,14 +27,14 @@ export default function PlaceDetail() {
   const [error, setError] = useState<string | null>(null);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const imageRef = ref(storage, post?.imageUrl);
+  const imageRef = post?.imageUrl ? ref(storage, post.imageUrl) : null;
 
   const handleDelete = async () => {
     if (post) {
       const confirm = window.confirm("Are you sure you want to delete it?");
       if (confirm) {
         try {
-          if (post?.imageUrl) {
+          if (post.imageUrl && imageRef) {
             deleteObject(imageRef).catch((error) => {
               console.log(error);
             });
@@ -128,6 +129,7 @@ export default function PlaceDetail() {
               </button>
             </div>
           )}
+          {user && <Comment post={post} />}
         </div>
       </div>
     </div>
