@@ -252,7 +252,7 @@ export default function PostForm() {
         <div className="form_block">
           <input
             type="submit"
-            className="btn-submit"
+            className="submit-btn"
             value="Submit"
             disabled={isSubmitting}
           />

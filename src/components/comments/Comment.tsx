@@ -4,6 +4,7 @@ import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { db } from "firebaseApp";
 import AuthContext from "context/AuthContext";
 import { toast } from "react-toastify";
+import "../../components/comments/Comment.scss";
 
 export interface CommentProps {
   post: PlaceProps | null;
@@ -52,7 +53,7 @@ export default function Comment({ post }: CommentProps) {
   };
 
   return (
-    <form className="post-form" onSubmit={onSubmit}>
+    <form className="form" onSubmit={onSubmit}>
       <textarea
         name="comment"
         id="comment"
@@ -67,7 +68,7 @@ export default function Comment({ post }: CommentProps) {
       <div className="submit-area">
         <input
           type="submit"
-          value="submit"
+          value="Comment"
           className="submit-btn"
           disabled={!comment}
         />
