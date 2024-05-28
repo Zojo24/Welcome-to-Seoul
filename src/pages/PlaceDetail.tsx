@@ -1,4 +1,4 @@
-import { deleteDoc, doc, getDoc } from "firebase/firestore";
+import { deleteDoc, doc, getDoc, onSnapshot } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { db, storage } from "../firebaseApp";
@@ -92,6 +92,28 @@ export default function PlaceDetail() {
       }
     };
     fetchPost();
+
+    const docRef = doc(db, "posts", id!);
+    const unsubscribe = onSnapshot(docRef, (doc) => {
+      if (doc.exists()) {
+        const data = doc.data();
+        setPost({
+          id: doc.id,
+          placeEng: data.placeEng,
+          placeKor: data.placeKor,
+          address: data.address,
+          comment: data.comment,
+          comments: data.comments || [],
+          rating: data.rating,
+          category: data.category,
+          recommendation: data.recommendation,
+          email: data.email,
+          imageUrl: data.imageUrl,
+        } as PlaceProps);
+      }
+    });
+
+    return () => unsubscribe();
   }, [id]);
 
   if (!post) return <div>Loading...</div>;
