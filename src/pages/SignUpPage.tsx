@@ -81,7 +81,7 @@ export default function SignUpPage() {
         <div className="form_block">
           <label htmlFor="password"> password</label>
           <input
-            type="text"
+            type="password"
             id="password"
             name="password"
             value={password}
@@ -91,7 +91,7 @@ export default function SignUpPage() {
         <div className="form_block">
           <label htmlFor="confirm_password"> confirm password</label>
           <input
-            type="text"
+            type="password"
             id="confirm_password"
             name="confirm_password"
             value={confirmPassword}

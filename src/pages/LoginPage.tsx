@@ -67,7 +67,7 @@ export default function LoginPage() {
         <div className="form_block">
           <label htmlFor="password"> password</label>
           <input
-            type="text"
+            type="password"
             id="password"
             name="password"
             value={password}
