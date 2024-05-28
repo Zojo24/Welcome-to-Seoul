@@ -10,21 +10,10 @@ import {
 import { db } from "../firebaseApp";
 import Place from "../components/Place";
 import Balloon from "../components/Balloon";
-
-export type PostProps = {
-  id: string;
-  placeEng: string;
-  placeKor?: string;
-  address: string;
-  comment: string;
-  rating: string;
-  category?: "Select!" | "Must Visit" | "Must Try";
-  recommendation?: string;
-  imageUrl: string;
-};
+import { PlaceProps } from "./PlaceDetail";
 
 export default function MustTry() {
-  const [posts, setPosts] = useState<PostProps[]>([]);
+  const [posts, setPosts] = useState<PlaceProps[]>([]);
   const navigate = useNavigate();
   const handleClick = () => {
     navigate("/blog-post");
@@ -42,7 +31,7 @@ export default function MustTry() {
       const dataObj = snapShot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
-      })) as PostProps[];
+      })) as PlaceProps[];
       setPosts(dataObj);
     });
   }, []);

@@ -1,0 +1,46 @@
+@import "../../styles/common";
+
+@mixin font {
+  font-family: sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.form {
+  margin-top: 5rem;
+
+  textarea {
+    width: 100%;
+    line-height: 1.5;
+    padding: 10px 0;
+    padding-left: 10px;
+    font-size: 16px;
+    border-radius: 15px;
+    border: 1px solid $shadow-color;
+    box-shadow: 0 4px 6px $shadow-color;
+    @include font;
+  }
+  .submit-area {
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    .submit-btn {
+      width: 6rem;
+      border: none;
+      padding: 10px;
+      border-radius: 10px;
+      margin-left: 1rem;
+      cursor: pointer;
+      background-color: $purple-btn;
+      color: $white;
+      font-family: "Jersey 10", sans-serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+
+      &:hover {
+        background-color: $purple-hover;
+      }
+    }
+  }
+}
