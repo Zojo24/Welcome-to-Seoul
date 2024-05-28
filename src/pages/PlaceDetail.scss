@@ -1,11 +1,11 @@
 @import "../styles/common";
+
 .box-detail {
   display: flex;
   justify-content: center;
 }
 .detail {
   width: 45rem;
-  height: 100vh;
   background-color: $white;
   padding: 5rem;
   display: flex;
@@ -31,6 +31,7 @@
 
   .detail_info {
     margin-top: 3rem;
+    max-height: 90rem;
     .name {
       font-size: 2.3rem;
     }
@@ -68,6 +69,8 @@
       display: flex;
       justify-content: right;
       align-items: center;
+      margin-bottom: 5rem;
+
       .edit-btn,
       .delete-btn,
       .save-btn {

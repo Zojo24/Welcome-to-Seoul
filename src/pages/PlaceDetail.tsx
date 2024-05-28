@@ -7,6 +7,7 @@ import AuthContext from "context/AuthContext";
 import { toast } from "react-toastify";
 import CommentForm from "../components/comments/CommentForm";
 import { ref, deleteObject } from "firebase/storage";
+import CommentBox, { CommentProps } from "components/comments/CommentBox";
 
 export type PlaceProps = {
   id: string;
@@ -14,6 +15,7 @@ export type PlaceProps = {
   placeKor?: string;
   address: string;
   comment: string;
+  comments?: CommentProps[];
   rating: string;
   category?: "Select!" | "Must Visit" | "Must Try";
   recommendation?: string;
@@ -75,6 +77,7 @@ export default function PlaceDetail() {
             placeKor: data.placeKor,
             address: data.address,
             comment: data.comment,
+            comments: data.comments || [],
             rating: data.rating,
             category: data.category,
             recommendation: data.recommendation,
@@ -93,6 +96,7 @@ export default function PlaceDetail() {
 
   if (!post) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
+
   return (
     <div className="box-detail">
       <div className="detail">
@@ -128,6 +132,16 @@ export default function PlaceDetail() {
                 Delete
               </button>
             </div>
+          )}
+          {post?.comments && post.comments.length > 0 ? (
+            post.comments
+              .slice(0)
+              .reverse()
+              .map((data: CommentProps, index: number) => (
+                <CommentBox data={data} key={index} post={post} />
+              ))
+          ) : (
+            <div>No comments yet.</div>
           )}
           {user && <CommentForm post={post} />}
         </div>
