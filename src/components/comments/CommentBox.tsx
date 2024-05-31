@@ -128,7 +128,12 @@ export default function CommentBox({ data, post }: CommentBoxProps) {
       {data.replies && data.replies.length > 0 && (
         <div className={styles.replies}>
           {data.replies.map((reply) => (
-            <ReplyBox key={reply.createdAt} data={reply} post={post} />
+            <ReplyBox
+              key={reply.createdAt}
+              data={reply}
+              post={post}
+              parentCommentId={data.createdAt}
+            />
           ))}
         </div>
       )}
