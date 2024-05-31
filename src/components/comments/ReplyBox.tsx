@@ -21,12 +21,12 @@ interface CommentBoxProps {
 export default function ReplyBox({ data, post }: CommentBoxProps) {
   const { user } = useContext(AuthContext);
 
-  const handleDeleteComment = async (commentToDelete: CommentProps) => {
+  const handleDeleteComment = async () => {
     if (post && user) {
       try {
         const postRef = doc(db, "posts", post.id);
         await updateDoc(postRef, {
-          comments: arrayRemove(commentToDelete),
+          comments: arrayRemove(data),
         });
         toast.success("Successfully deleted the comment");
       } catch (error) {
@@ -46,7 +46,7 @@ export default function ReplyBox({ data, post }: CommentBoxProps) {
           <button
             type="button"
             className="deleteBtn"
-            onClick={() => handleDeleteComment(data)}
+            onClick={handleDeleteComment}
           >
             Delete
           </button>

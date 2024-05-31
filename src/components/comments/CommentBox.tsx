@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { PlaceProps } from "../../pages/PlaceDetail";
 import AuthContext from "context/AuthContext";
-import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { arrayRemove, doc, updateDoc } from "firebase/firestore";
 import { db } from "firebaseApp";
 import { toast } from "react-toastify";
 import styles from "./CommentBox.module.scss";
@@ -24,12 +24,12 @@ export default function CommentBox({ data, post }: CommentBoxProps) {
   const [reply, setReply] = useState<string>("");
   const [showReplyBox, setShowReplyBox] = useState<boolean>(false);
 
-  const handleDeleteComment = async (commentToDelete: CommentProps) => {
+  const handleDeleteComment = async () => {
     if (post && user) {
       try {
         const postRef = doc(db, "posts", post.id);
         await updateDoc(postRef, {
-          comments: arrayRemove(commentToDelete),
+          comments: arrayRemove(data),
         });
         toast.success("Successfully deleted the comment");
       } catch (error) {
@@ -46,7 +46,7 @@ export default function CommentBox({ data, post }: CommentBoxProps) {
         const newReply: CommentProps = {
           comment: reply,
           email: user.email as string,
-          createdAt: new Date()?.toLocaleDateString("ko", {
+          createdAt: new Date().toLocaleString("ko", {
             hour: "2-digit",
             minute: "2-digit",
             second: "2-digit",
@@ -56,7 +56,9 @@ export default function CommentBox({ data, post }: CommentBoxProps) {
           if (comment.createdAt === data.createdAt) {
             return {
               ...comment,
-              replies: comment.replies ? arrayUnion(newReply) : [newReply],
+              replies: comment.replies
+                ? [...comment.replies, newReply]
+                : [newReply],
             };
           }
           return comment;
@@ -74,6 +76,14 @@ export default function CommentBox({ data, post }: CommentBoxProps) {
     }
   };
 
+  const handleReplyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setReply(e.target.value);
+  };
+
+  const toggleReplyBox = () => {
+    setShowReplyBox(!showReplyBox);
+  };
+
   return (
     <div key={data?.createdAt} className={styles.comment}>
       <div className={styles.box}>
@@ -87,7 +97,7 @@ export default function CommentBox({ data, post }: CommentBoxProps) {
           <button
             type="button"
             className={styles.replyBtn}
-            onClick={() => setShowReplyBox(!showReplyBox)}
+            onClick={toggleReplyBox}
           >
             Reply
           </button>
@@ -96,7 +106,7 @@ export default function CommentBox({ data, post }: CommentBoxProps) {
           <button
             type="button"
             className={styles.deleteBtn}
-            onClick={() => handleDeleteComment(data)}
+            onClick={handleDeleteComment}
           >
             Delete
           </button>
@@ -107,7 +117,7 @@ export default function CommentBox({ data, post }: CommentBoxProps) {
           <input
             type="text"
             value={reply}
-            onChange={(e) => setReply(e.target.value)}
+            onChange={handleReplyChange}
             placeholder="Write a reply..."
           />
           <button type="button" onClick={handleAddReply}>
