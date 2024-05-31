@@ -5,6 +5,7 @@ import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { db } from "firebaseApp";
 import { toast } from "react-toastify";
 import styles from "./CommentBox.module.scss";
+import ReplyBox from "./ReplyBox";
 
 export interface CommentProps {
   comment: string;
@@ -82,15 +83,6 @@ export default function CommentBox({ data, post }: CommentBoxProps) {
       </div>
       <div className={styles.content}>{data.comment}</div>
       <div className={styles.submitArea}>
-        {data?.email === user?.email && (
-          <button
-            type="button"
-            className={styles.deleteBtn}
-            onClick={() => handleDeleteComment(data)}
-          >
-            Delete
-          </button>
-        )}
         {user && (
           <button
             type="button"
@@ -98,6 +90,15 @@ export default function CommentBox({ data, post }: CommentBoxProps) {
             onClick={() => setShowReplyBox(!showReplyBox)}
           >
             Reply
+          </button>
+        )}
+        {data?.email === user?.email && (
+          <button
+            type="button"
+            className={styles.deleteBtn}
+            onClick={() => handleDeleteComment(data)}
+          >
+            Delete
           </button>
         )}
       </div>
@@ -117,7 +118,7 @@ export default function CommentBox({ data, post }: CommentBoxProps) {
       {data.replies && data.replies.length > 0 && (
         <div className={styles.replies}>
           {data.replies.map((reply) => (
-            <CommentBox key={reply.createdAt} data={reply} post={post} />
+            <ReplyBox key={reply.createdAt} data={reply} post={post} />
           ))}
         </div>
       )}
