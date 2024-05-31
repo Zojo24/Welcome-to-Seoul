@@ -64,5 +64,58 @@
         background-color: $dark-gray;
       }
     }
+
+    .replyBtn {
+      border: none;
+      padding: 5px 8px;
+      border-radius: 10px;
+      margin-left: 1rem;
+      cursor: pointer;
+      background-color: #ffd83e;
+      color: $white;
+      font-family: "Jersey 10", sans-serif;
+      font-size: 1rem;
+
+      &:hover {
+        background-color: #fec747;
+      }
+    }
+  }
+  .replyBox {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    padding: 0.8rem;
+    margin: 1rem 0 0 18rem;
+    background-color: $yellow;
+    border: none;
+    box-shadow: none;
+    input {
+      width: 100%;
+      background-color: $white;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      padding: 0.8rem;
+      border: none;
+      color: $white;
+      &:hover,
+      &:focus {
+        border: none;
+        outline: 1px solid #ffab3d;
+        color: $dark-gray;
+      }
+    }
+    button {
+      border: none;
+      padding: 3.5px 0.8em;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      margin-left: auto;
+      cursor: pointer;
+      background-color: #ffab3d;
+      color: $white;
+      font-family: "Jersey 10", sans-serif;
+      font-size: 1rem;
+    }
   }
 }
