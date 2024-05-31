@@ -1,7 +1,7 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { PlaceProps } from "../../pages/PlaceDetail";
 import AuthContext from "context/AuthContext";
-import { arrayRemove, doc, updateDoc } from "firebase/firestore";
+import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { db } from "firebaseApp";
 import { toast } from "react-toastify";
 import styles from "./CommentBox.module.scss";
@@ -10,7 +10,9 @@ export interface CommentProps {
   comment: string;
   email: string;
   createdAt: string;
+  replies?: CommentProps[];
 }
+
 interface CommentBoxProps {
   data: CommentProps;
   post: PlaceProps;
@@ -18,18 +20,55 @@ interface CommentBoxProps {
 
 export default function CommentBox({ data, post }: CommentBoxProps) {
   const { user } = useContext(AuthContext);
+  const [reply, setReply] = useState<string>("");
+  const [showReplyBox, setShowReplyBox] = useState<boolean>(false);
 
-  const handleDeleteComment = async () => {
-    if (post) {
+  const handleDeleteComment = async (commentToDelete: CommentProps) => {
+    if (post && user) {
       try {
         const postRef = doc(db, "posts", post.id);
         await updateDoc(postRef, {
-          comments: arrayRemove(data),
+          comments: arrayRemove(commentToDelete),
         });
         toast.success("Successfully deleted the comment");
       } catch (error) {
         console.log(error);
         toast.error("Failed to delete the comment");
+      }
+    }
+  };
+
+  const handleAddReply = async () => {
+    if (post && user && reply.trim()) {
+      try {
+        const postRef = doc(db, "posts", post.id);
+        const newReply: CommentProps = {
+          comment: reply,
+          email: user.email as string,
+          createdAt: new Date()?.toLocaleDateString("ko", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+          }),
+        };
+        const updatedComments = (post.comments || []).map((comment) => {
+          if (comment.createdAt === data.createdAt) {
+            return {
+              ...comment,
+              replies: comment.replies ? arrayUnion(newReply) : [newReply],
+            };
+          }
+          return comment;
+        });
+        await updateDoc(postRef, {
+          comments: updatedComments,
+        });
+        setReply("");
+        setShowReplyBox(false);
+        toast.success("Reply added successfully");
+      } catch (error) {
+        console.log(error);
+        toast.error("Failed to add the reply");
       }
     }
   };
@@ -47,12 +86,41 @@ export default function CommentBox({ data, post }: CommentBoxProps) {
           <button
             type="button"
             className={styles.deleteBtn}
-            onClick={handleDeleteComment}
+            onClick={() => handleDeleteComment(data)}
           >
             Delete
           </button>
         )}
+        {user && (
+          <button
+            type="button"
+            className={styles.replyBtn}
+            onClick={() => setShowReplyBox(!showReplyBox)}
+          >
+            Reply
+          </button>
+        )}
       </div>
+      {showReplyBox && (
+        <div className={styles.replyBox}>
+          <input
+            type="text"
+            value={reply}
+            onChange={(e) => setReply(e.target.value)}
+            placeholder="Write a reply..."
+          />
+          <button type="button" onClick={handleAddReply}>
+            Add Reply
+          </button>
+        </div>
+      )}
+      {data.replies && data.replies.length > 0 && (
+        <div className={styles.replies}>
+          {data.replies.map((reply) => (
+            <CommentBox key={reply.createdAt} data={reply} post={post} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
