@@ -1,0 +1,121 @@
+@import "../../styles/common";
+
+.comment {
+  border-radius: 10px;
+  padding: 1rem 1rem 0.5rem 1rem;
+  margin: 2rem 0;
+  border: 1px solid $purple;
+  background-color: $white;
+  box-shadow: 0 4px 6px $shadow-color;
+
+  .box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+
+    img {
+      width: 2rem;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+    }
+
+    &_email {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-right: 1rem;
+      color: $purple-btn;
+    }
+
+    &_createdAt {
+      font-size: 0.9rem;
+      color: $light-gray;
+    }
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    font-size: 1.3rem;
+    background-color: $purple;
+    color: $dark-gray;
+    padding-left: 10px;
+    border-radius: 10px;
+  }
+
+  .submitArea {
+    width: 100%;
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: flex-end;
+
+    .deleteBtn {
+      border: none;
+      padding: 5px 8px;
+      border-radius: 10px;
+      margin-left: 1rem;
+      cursor: pointer;
+      background-color: $light-gray;
+      color: $white;
+      font-family: "Jersey 10", sans-serif;
+      font-size: 1rem;
+
+      &:hover {
+        background-color: $dark-gray;
+      }
+    }
+
+    .replyBtn {
+      border: none;
+      padding: 5px 8px;
+      border-radius: 10px;
+      margin-left: 1rem;
+      cursor: pointer;
+      background-color: #ffd83e;
+      color: $white;
+      font-family: "Jersey 10", sans-serif;
+      font-size: 1rem;
+
+      &:hover {
+        background-color: #fec747;
+      }
+    }
+  }
+  .replyBox {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    padding: 0.8rem;
+    margin: 1rem 0 0 18rem;
+    background-color: $yellow;
+    border: none;
+    box-shadow: none;
+    input {
+      width: 100%;
+      background-color: $white;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      padding: 0.8rem;
+      border: none;
+      color: $white;
+      &:hover,
+      &:focus {
+        border: none;
+        outline: 1px solid #ffab3d;
+        color: $dark-gray;
+      }
+    }
+    button {
+      border: none;
+      padding: 3.5px 0.8em;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      margin-left: auto;
+      cursor: pointer;
+      background-color: #ffab3d;
+      color: $white;
+      font-family: "Jersey 10", sans-serif;
+      font-size: 1rem;
+    }
+  }
+}

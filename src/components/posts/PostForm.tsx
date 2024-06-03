@@ -5,7 +5,7 @@ import { db, storage } from "../../firebaseApp";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, useParams } from "react-router-dom";
-import { PostProps } from "pages/MustTry";
+import { PlaceProps } from "pages/PlaceDetail";
 import AuthContext from "context/AuthContext";
 import { v4 as uuidv4 } from "uuid";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
@@ -34,7 +34,7 @@ export default function PostForm() {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        const data = docSnap.data() as PostProps;
+        const data = docSnap.data() as PlaceProps;
 
         setPlaceEng(data.placeEng);
         setPlaceKor(data.placeKor || "");
@@ -252,7 +252,7 @@ export default function PostForm() {
         <div className="form_block">
           <input
             type="submit"
-            className="btn-submit"
+            className="submit-btn"
             value="Submit"
             disabled={isSubmitting}
           />
