@@ -114,6 +114,9 @@ export default function CommentBox({ data, post }: CommentBoxProps) {
       </div>
       {showReplyBox && (
         <div className={styles.replyBox}>
+          <div className="material-symbols-outlined">
+            subdirectory_arrow_right
+          </div>
           <input
             type="text"
             value={reply}

@@ -58,21 +58,24 @@ export default function ReplyBox({
 
   return (
     <div key={data?.createdAt} className="reply">
-      <div className="reply_box">
-        <img src="/logo.jpeg" alt="profile" />
-        <div className="reply_box_email">{data.email}</div>
-        <div className="reply_box_createdAt">{data.createdAt}</div>
-        {data?.email === user?.email && (
-          <button
-            type="button"
-            className="deleteBtn"
-            onClick={handleDeleteReply}
-          >
-            Delete
-          </button>
-        )}
+      <div className="material-symbols-outlined">subdirectory_arrow_right</div>
+      <div className="box">
+        <div className="box_content">
+          <img src="/logo.jpeg" alt="profile" />
+          <div className="box_content_email">{data.email}</div>
+          <div className="box_content_createdAt">{data.createdAt}</div>
+          {data?.email === user?.email && (
+            <button
+              type="button"
+              className="deleteBtn"
+              onClick={handleDeleteReply}
+            >
+              Delete
+            </button>
+          )}
+        </div>
+        <div className="content">{data.comment}</div>
       </div>
-      <div className="content">{data.comment}</div>
     </div>
   );
 }

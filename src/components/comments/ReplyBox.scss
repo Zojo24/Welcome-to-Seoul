@@ -7,53 +7,62 @@
   background-color: $yellow;
   border: none;
   box-shadow: none;
-
-  .reply_box {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.5rem;
-
-    img {
-      width: 2rem;
-      border-radius: 50%;
-      margin-right: 0.5rem;
-    }
-
-    &_email {
-      font-weight: bold;
-      font-size: 1.1rem;
-      margin-right: 1rem;
-      color: $purple-btn;
-    }
-
-    &_createdAt {
-      font-size: 0.9rem;
-      color: $light-gray;
-    }
+  display: flex;
+  .material-symbols-outlined {
+    margin-right: 10px;
+    color: $white;
   }
-  .deleteBtn {
-    border: none;
-    padding: 5px 8px;
-    border-radius: 10px;
-    margin-left: auto;
-    cursor: pointer;
-    background-color: $white;
-    color: $dark-gray;
-    font-family: "Jersey 10", sans-serif;
-    font-size: 1rem;
+  .box {
+    width: 100%;
+    .box_content {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
 
-    &:hover {
-      background-color: $light-gray;
+      img {
+        width: 2rem;
+        border-radius: 50%;
+        margin-right: 0.5rem;
+      }
+
+      &_email {
+        font-weight: bold;
+        font-size: 1.1rem;
+        margin-right: 1rem;
+        color: $purple-btn;
+      }
+
+      &_createdAt {
+        font-size: 0.9rem;
+        color: $light-gray;
+      }
+
+      .deleteBtn {
+        border: none;
+        padding: 5px 8px;
+        border-radius: 10px;
+        margin-left: auto;
+        cursor: pointer;
+        background-color: $white;
+        color: $dark-gray;
+        font-family: "Jersey 10", sans-serif;
+        font-size: 1rem;
+
+        &:hover {
+          background-color: $light-gray;
+        }
+      }
     }
-  }
-  .content {
-    display: flex;
-    align-items: center;
-    height: 2rem;
-    font-size: 1.3rem;
-    background-color: $white;
-    color: $dark-gray;
-    padding-left: 10px;
-    border-radius: 10px;
+    .content {
+      display: flex;
+      align-items: center;
+      height: 2rem;
+      font-size: 1.3rem;
+      background-color: $white;
+      color: $dark-gray;
+      padding-left: 10px;
+      border-radius: 10px;
+    }
   }
 }

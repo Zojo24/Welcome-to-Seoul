@@ -12,6 +12,10 @@ $delete-hover: rgb(244, 78, 78);
 $purple-btn: #c99bfd;
 $purple-hover: #a157f4;
 
+@mixin arrow {
+  margin-right: 10px;
+  color: $white;
+}
 .page_container {
   background-color: $white;
   border-radius: 10px;
