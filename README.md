@@ -81,4 +81,4 @@ TypeScript, React, SCSS, Vercel, Firebase
 
 | 댓글 기능                                                                                       | 댓댓글 기능                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| ![](https://velog.velcdn.com/images/zojo24/post/95a25115-39be-4881-82e4-0ad1bcd925b9/image.png) | ![](https://velog.velcdn.com/images/zojo24/post/64ad5a6f-e694-4ee9-a0e5-d1e684ab1e41/image.png) |
+| ![](https://velog.velcdn.com/images/zojo24/post/95a25115-39be-4881-82e4-0ad1bcd925b9/image.png) | ![](https://velog.velcdn.com/images/zojo24/post/f0f62681-2349-44d7-8f13-51731767bad0/image.png) |
