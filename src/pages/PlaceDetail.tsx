@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import CommentForm from "../components/comments/CommentForm";
 import { ref, deleteObject } from "firebase/storage";
 import CommentBox, { CommentProps } from "components/comments/CommentBox";
+import Map from "../components/Map";
 
 export type PlaceProps = {
   id: string;
@@ -132,6 +133,7 @@ export default function PlaceDetail() {
           </div>
           <div className="name">{post.placeKor}</div>
           <p className="address">{post.address}</p>
+          <Map address={post.address} />
           <div className="recommendation-box">
             <div className="box-title">Recommendation </div>
             <p className="recommendation">{post.recommendation}</p>

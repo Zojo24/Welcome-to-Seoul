@@ -7,7 +7,6 @@ import { ToastContainer } from "react-toastify";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { app } from "./firebaseApp";
 import { useEffect, useState } from "react";
-
 export default function App() {
   const auth = getAuth(app);
 
