@@ -14,7 +14,7 @@ declare global {
 export default function GoogleMap({ address }: GoogleMapProps) {
   useEffect(() => {
     const mapScript = document.createElement("script");
-    mapScript.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places&callback=initMap`;
+    mapScript.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_API_KEY}&libraries=places&callback=initMap`;
     mapScript.async = true;
     mapScript.defer = true;
     document.head.appendChild(mapScript);
