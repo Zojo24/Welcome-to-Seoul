@@ -8,7 +8,7 @@ export default function Map({ address }: NaverMapProps) {
   useEffect(() => {
     const mapScript = document.createElement("script");
     mapScript.async = true;
-    mapScript.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=REACT_APP_NAVER_CLIENT_ID`;
+    mapScript.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.REACT_APP_NAVER_CLIENT_ID}`;
     document.head.appendChild(mapScript);
 
     mapScript.onload = () => {
